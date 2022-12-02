@@ -7,13 +7,13 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function ProjectCard(props) {
+  let link = "/projectdetail/"+ props.id
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
         image={props.image}
-        alt="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -24,8 +24,8 @@ export default function ProjectCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="medium">Share</Button>
+        <Button size="medium" href={link}>Learn More</Button>
       </CardActions>
     </Card>
   );
