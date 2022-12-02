@@ -65,7 +65,7 @@ const SignIn = (props) => {
                     Welcome
                   </Typography>
                   <Typography color="text.secondary" sx={{ mb: 3 }} variant="body2">
-                    Sign up / Log in to Employee 100
+                    Sign up / Log in to Cynance
                   </Typography>
 
                   <Box component="form" onSubmit={(event) => props.login(event)} noValidate sx={{ mt: 1 }}>
@@ -139,7 +139,7 @@ const SignIn = (props) => {
                 }}
                 variant="h1"
               >
-                Employee 100
+                Cynance
               </Typography>
               <Typography align="center" sx={{ mb: 3 }} variant="subtitle1">
                 Please design a logo!

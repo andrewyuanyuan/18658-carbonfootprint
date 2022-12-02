@@ -27,10 +27,7 @@ const HeaderNavbar = (props) => {
 
   return (
     <>
-      <HeaderNavbarRoot
-        {...other}
-      > 
-        
+      <HeaderNavbarRoot {...other}>
         <Toolbar
           disableGutters
           sx={{
@@ -60,7 +57,6 @@ const HeaderNavbar = (props) => {
           <Box sx={{ flexGrow: 1 }} />
 
           {loginStatus ? (
-          
             <>
               <Tooltip title="Notifications">
                 <IconButton sx={{ ml: 1 }}>
@@ -83,12 +79,12 @@ const HeaderNavbar = (props) => {
                 <UserCircleIcon fontSize="small" />
               </Avatar>
             </>
-            ) : (
-              <></>
-            )}
+          ) : (
+            <></>
+          )}
         </Toolbar>
       </HeaderNavbarRoot>
-      
+
       <AccountPopover
         anchorEl={settingsRef.current}
         open={openAccountPopover}

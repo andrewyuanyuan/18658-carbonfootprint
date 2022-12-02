@@ -28,9 +28,7 @@ const DashboardNavbar = (props) => {
 
   return (
     <>
-      <DashboardNavbarRoot
-        {...other}
-      > 
+      <DashboardNavbarRoot {...other}>
         <Toolbar
           disableGutters
           sx={{
