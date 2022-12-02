@@ -1,12 +1,12 @@
 import React from 'react';
 import DashboardLayout from '../../common/dashboard';
 
-function PostJob() {
+function ProjectGallary() {
   return (
     <DashboardLayout>
-      <h1>Post Job</h1>
+      <h1>Account Dashboard</h1>
     </DashboardLayout>
   );
 }
 
-export default PostJob;
+export default ProjectGallary;

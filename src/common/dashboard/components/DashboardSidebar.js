@@ -83,13 +83,9 @@ const DashboardSidebar = (props) => {
 
   const content = (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <Box sx={{mt:2, display: 'flex', flexDirection: 'column', height: '100%' }}>
         <div>
-          <Box sx={{ p: 3 }}>
-            <a>
-              <Logo sx={{ height: 42, width: 42 }} />
-            </a>
-          </Box>
+          
           <Box sx={{ px: 2 }}>
             {loginStatus ? (
               <Box
@@ -149,6 +145,9 @@ const DashboardSidebar = (props) => {
         open
         PaperProps={{
           sx: {
+            top:{
+              lg: 64,
+            },
             backgroundColor: 'neutral.900',
             color: '#FFFFFF',
             width: 280,

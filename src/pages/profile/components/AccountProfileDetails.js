@@ -1,13 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material';
-import axios from 'axios';
+
+const states = [
+  {
+    value: 'california',
+    label: 'California',
+  },
+  {
+    value: 'alabama',
+    label: 'Alabama',
+  },
+  {
+    value: 'new-york',
+    label: 'New York',
+  },
+  {
+    value: 'san-francisco',
+    label: 'San Francisco',
+  },
+];
 
 export const AccountProfileDetails = (props) => {
-  const [values, setValues] = useState({});
-
-  useEffect(() => {
-    setValues(props.basicprofile);
-  }, [props.basicprofile]);
+  const [values, setValues] = useState({
+    firstName: 'Anyuan',
+    lastName: 'Yu',
+    email: 'anyuany@andrew.cmu.edu',
+    phone: '',
+    state: 'California',
+    country: 'USA',
+  });
 
   const handleChange = (event) => {
     setValues({
@@ -31,7 +52,7 @@ export const AccountProfileDetails = (props) => {
                 name="firstName"
                 onChange={handleChange}
                 required
-                value={(values && values.firstName) || ''}
+                value={values.firstName}
                 variant="outlined"
               />
             </Grid>
@@ -42,7 +63,7 @@ export const AccountProfileDetails = (props) => {
                 name="lastName"
                 onChange={handleChange}
                 required
-                value={(values && values.lastName) || ''}
+                value={values.lastName}
                 variant="outlined"
               />
             </Grid>
@@ -53,7 +74,7 @@ export const AccountProfileDetails = (props) => {
                 name="email"
                 onChange={handleChange}
                 required
-                value={(values && values.email) || ''}
+                value={values.email}
                 variant="outlined"
               />
             </Grid>
@@ -61,10 +82,10 @@ export const AccountProfileDetails = (props) => {
               <TextField
                 fullWidth
                 label="Phone Number"
-                name="phoneNumber"
+                name="phone"
                 onChange={handleChange}
                 type="number"
-                value={(values && values.phoneNumber) || ''}
+                value={values.phone}
                 variant="outlined"
               />
             </Grid>
@@ -75,9 +96,28 @@ export const AccountProfileDetails = (props) => {
                 name="country"
                 onChange={handleChange}
                 required
-                value={(values && values.country) || ''}
+                value={values.country}
                 variant="outlined"
               />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextField
+                fullWidth
+                label="Select State"
+                name="state"
+                onChange={handleChange}
+                required
+                select
+                SelectProps={{ native: true }}
+                value={values.state}
+                variant="outlined"
+              >
+                {states.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
             </Grid>
           </Grid>
         </CardContent>
@@ -89,21 +129,8 @@ export const AccountProfileDetails = (props) => {
             p: 2,
           }}
         >
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={() => {
-              axios
-                .put('users/profile', values)
-                .then(function (response) {
-                  alert('Update user profile successfully');
-                })
-                .catch(function (error) {
-                  alert('Update user profile failed!');
-                });
-            }}
-          >
-            Update details
+          <Button color="primary" variant="contained">
+            Save details
           </Button>
         </Box>
       </Card>

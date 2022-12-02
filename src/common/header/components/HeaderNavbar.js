@@ -2,18 +2,17 @@ import { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { AppBar, Avatar, Badge, Box, Button, IconButton, Toolbar, Tooltip } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import BellIcon from '../../../icons/bell';
 import UserCircleIcon from '../../../icons/user-circle';
-import AccountPopover from './AccountPopover';
+import AccountPopover from '../../dashboard/components/AccountPopover';
 import Logo from '../../Logo';
 
-const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
+const HeaderNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   boxShadow: theme.shadows[3],
 }));
 
-const DashboardNavbar = (props) => {
+const HeaderNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
   const settingsRef = useRef(null);
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
@@ -28,9 +27,10 @@ const DashboardNavbar = (props) => {
 
   return (
     <>
-      <DashboardNavbarRoot
+      <HeaderNavbarRoot
         {...other}
       > 
+        
         <Toolbar
           disableGutters
           sx={{
@@ -39,18 +39,6 @@ const DashboardNavbar = (props) => {
             px: 2,
           }}
         >
-          <IconButton
-            onClick={onSidebarOpen}
-            sx={{
-              display: {
-                xs: 'inline-flex',
-                lg: 'none',
-              },
-            }}
-          >
-            <MenuIcon fontSize="small" />
-          </IconButton>
-
           <Box sx={{ p: 2 }}>
             <a>
               <Logo sx={{ height: 42, width: 42 }} />
@@ -72,6 +60,7 @@ const DashboardNavbar = (props) => {
           <Box sx={{ flexGrow: 1 }} />
 
           {loginStatus ? (
+          
             <>
               <Tooltip title="Notifications">
                 <IconButton sx={{ ml: 1 }}>
@@ -94,11 +83,12 @@ const DashboardNavbar = (props) => {
                 <UserCircleIcon fontSize="small" />
               </Avatar>
             </>
-          ) : (
-            <></>
-          )}
+            ) : (
+              <></>
+            )}
         </Toolbar>
-      </DashboardNavbarRoot>
+      </HeaderNavbarRoot>
+      
       <AccountPopover
         anchorEl={settingsRef.current}
         open={openAccountPopover}
@@ -108,8 +98,8 @@ const DashboardNavbar = (props) => {
   );
 };
 
-DashboardNavbar.propTypes = {
+HeaderNavbar.propTypes = {
   onSidebarOpen: PropTypes.func,
 };
 
-export default DashboardNavbar;
+export default HeaderNavbar;
