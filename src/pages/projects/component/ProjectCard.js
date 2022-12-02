@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function ProjectCard(props) {
-  let link = "/projectdetail/"+ props.id
+  let link = "/projects/" + props.category + "/" + props.id
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
