@@ -1,57 +1,37 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
-import ChartBarIcon from '../../../icons/chart-bar';
 import CogIcon from '../../../icons/cog';
 import LockIcon from '../../../icons/lock';
 import SelectorIcon from '../../../icons/selector';
-import UserIcon from '../../../icons/user';
-import UsersIcon from '../../../icons/users';
-import XCircleIcon from '../../../icons/x-circle';
-import Logo from '../../Logo';
 import NavItem from './NavItem';
 
 const items = [
-  {
-    href: '/',
-    icon: <ChartBarIcon fontSize="small" />,
-    title: 'Job',
-  },
-  {
-    href: '/post-job',
-    icon: <ChartBarIcon fontSize="small" />,
-    title: 'Post Job',
-  },
-  {
-    href: '/my-refer',
-    icon: <UsersIcon fontSize="small" />,
-    title: 'Refer',
-  },
-  {
-    href: '/my-application',
-    icon: <UsersIcon fontSize="small" />,
-    title: 'Application',
-  },
-  {
-    href: '/profile',
-    icon: <UserIcon fontSize="small" />,
-    title: 'Career Profile',
-  },
-  {
-    href: '/settings',
-    icon: <CogIcon fontSize="small" />,
-    title: 'Settings',
-  },
-  {
-    href: '/404',
-    icon: <XCircleIcon fontSize="small" />,
-    title: 'Error',
-  },
-  {
-    href: '/redux-example',
-    icon: <CogIcon fontSize="small" />,
-    title: 'Redux Example',
-  },
+  // {
+  //   href: '/customization',
+  //   icon: <CogIcon fontSize="small" />,
+  //   title: 'Customization',
+  // },
+  // {
+  //   href: '/recent',
+  //   icon: <CogIcon fontSize="small" />,
+  //   title: 'Recent',
+  // },
+  // {
+  //   href: '/transactions',
+  //   icon: <CogIcon fontSize="small" />,
+  //   title: 'Transactions',
+  // },
+  // {
+  //   href: '/balance',
+  //   icon: <CogIcon fontSize="small" />,
+  //   title: 'Balance',
+  // },
+  // {
+  //   href: '/emissionquota',
+  //   icon: <CogIcon fontSize="small" />,
+  //   title: 'Emission Quota',
+  // },
   {
     href: '/test',
     icon: <CogIcon fontSize="small" />,
@@ -83,13 +63,8 @@ const DashboardSidebar = (props) => {
 
   const content = (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
         <div>
-          <Box sx={{ p: 3 }}>
-            <a>
-              <Logo sx={{ height: 42, width: 42 }} />
-            </a>
-          </Box>
           <Box sx={{ px: 2 }}>
             {loginStatus ? (
               <Box
@@ -149,6 +124,9 @@ const DashboardSidebar = (props) => {
         open
         PaperProps={{
           sx: {
+            top: {
+              lg: 64,
+            },
             backgroundColor: 'neutral.900',
             color: '#FFFFFF',
             width: 280,
