@@ -20,7 +20,7 @@ const items = [
     title: 'Customization',
   },
   {
-    href: '/recent',
+    href: '/dashboard',
     icon: <RecentIcon fontSize="small" />,
     title: 'Recent',
   },
