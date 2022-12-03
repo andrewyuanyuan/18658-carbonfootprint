@@ -21,7 +21,7 @@ const trans = [
   {
     id: uuid(),
     ref: 'CDD1049',
-    amount: 30.5,
+    amount: -30.5,
     project: {
       name: 'Ocean Power',
     },
@@ -31,7 +31,7 @@ const trans = [
   {
     id: uuid(),
     ref: 'CDD1048',
-    amount: 25.1,
+    amount: -25.1,
     project: {
       name: 'Whale Defender',
     },
@@ -41,7 +41,7 @@ const trans = [
   {
     id: uuid(),
     ref: 'CDD1047',
-    amount: 10.99,
+    amount: +10.99,
     project: {
       name: 'Green City',
     },
@@ -51,7 +51,7 @@ const trans = [
   {
     id: uuid(),
     ref: 'CDD1046',
-    amount: 96.43,
+    amount: -96.43,
     project: {
       name: 'Nanaimo Landfill Gas Capture',
     },
@@ -61,7 +61,7 @@ const trans = [
   {
     id: uuid(),
     ref: 'CDD1045',
-    amount: 32.54,
+    amount: -32.54,
     project: {
       name: 'NL Climate & Ecosystem Conservancy',
     },
@@ -71,7 +71,7 @@ const trans = [
   {
     id: uuid(),
     ref: 'CDD1044',
-    amount: 16.76,
+    amount: -16.76,
     project: {
       name: 'Thermal Residential Heating Aggregation',
     },
@@ -90,6 +90,7 @@ const LatestTransactions = (props) => (
             <TableRow>
               <TableCell>Trans Ref</TableCell>
               <TableCell>Project</TableCell>
+              <TableCell>Amount</TableCell>
               <TableCell sortDirection="desc">
                 <Tooltip enterDelay={300} title="Sort">
                   <TableSortLabel active direction="desc">
@@ -105,6 +106,7 @@ const LatestTransactions = (props) => (
               <TableRow hover key={tran.id}>
                 <TableCell>{tran.ref}</TableCell>
                 <TableCell>{tran.project.name}</TableCell>
+                <TableCell>{tran.amount}</TableCell>
                 <TableCell>{format(tran.createdAt, 'dd/MM/yyyy')}</TableCell>
                 <TableCell>
                   <SeverityPill
