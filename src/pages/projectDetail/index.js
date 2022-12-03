@@ -78,7 +78,7 @@ function ProjectDetail() {
                 startIcon={<CurrencyExchangeIcon fontSize="medium" />}
                 sx={{ mt: 6, mb: 3 }}
                 variant="contained"
-                href="/"
+                href={'/projects/investment/' + category + '/' + id}
               >
                 Make Investment
               </Button>
