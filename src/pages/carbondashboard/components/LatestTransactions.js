@@ -109,9 +109,7 @@ const LatestTransactions = (props) => (
                 <TableCell>
                   <SeverityPill
                     color={
-                      (tran.status === 'delivered' && 'success') ||
-                      (tran.status === 'refunded' && 'error') ||
-                      'warning'
+                      (tran.status === 'delivered' && 'success') || (tran.status === 'refunded' && 'error') || 'warning'
                     }
                   >
                     {tran.status}

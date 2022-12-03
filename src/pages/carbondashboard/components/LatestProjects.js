@@ -28,7 +28,6 @@ const projects = [
     imageUrl: '/static/images/projects/ocean/WhaleDefender.png',
     updatedAt: subHours(Date.now(), 4),
   },
-  
 ];
 
 const LatestProjects = (props) => (
@@ -71,5 +70,3 @@ const LatestProjects = (props) => (
 );
 
 export default LatestProjects;
-
-
