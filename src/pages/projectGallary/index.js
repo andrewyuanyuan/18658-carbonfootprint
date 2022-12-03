@@ -4,16 +4,25 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
-// import flex from '@react-css/flex'
+import { Container } from '@mui/material';
+import ImageSlider from "./ImageSlider";
+
 
 function ProjectGallary() {
+  const slides = [
+    { url: "/static/images/projects/proj_gal_topimgtxt.png", title: "beach" },
+    { url: "/static/images/projects/ocean/CleanOcean.png", title: "oceanProtector" },
+  ];
+
+  const containerStyles = {
+    width: "500px",
+    height: "280px",
+    margin: "0 auto",
+  };
+
+
   return (
     <HeaderLayout>
-      {/* <h1>Project Gallery</h1> */}
-    <div>
-      <img style={{ width: "100%" }} src="/static/images/projects/proj_gal_topimgtxt.png" alt="glarrybanner"/>
-    </div>
-
     <Box
         sx={{
           display: 'flex',
@@ -21,7 +30,8 @@ function ProjectGallary() {
           p: 1,
           m: 1,
         }}
-      >
+      > <Container maxWidth="lg">
+          <ImageSlider style={{ width: "100%" }} slides={slides} />
         <Button href="\projects/forest" style={{ width: "33.33%" }}>
           <img src="/static/images/projects/proj_gal_img1.png" alt="forest" style={{ width: "100%" }} />
         </Button>
@@ -30,15 +40,15 @@ function ProjectGallary() {
           <img src="/static/images/projects/proj_gal_oceanimg.png" alt="ocean" style={{ width: "100%" }}/>
         </Button>
 
-        <Button href="\projects/forest" style={{ width: "33.33%" }}>
+        <Button href="\projects/renewable" style={{ width: "33.33%" }}>
           <img src="/static/images/projects/proj_gal_img3.png" alt="other" style={{ width: "100%" }} />
         </Button>
+        </Container>
     </Box>
-      
+     
     </HeaderLayout>
   );
 }
-
 
 
 export default ProjectGallary;
