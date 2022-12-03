@@ -1,12 +1,44 @@
 import React from 'react';
 import HeaderLayout from '../../common/header';
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
+// import flex from '@react-css/flex'
 
 function ProjectGallary() {
   return (
     <HeaderLayout>
-      <h1>Project Gallery</h1>
+      {/* <h1>Project Gallery</h1> */}
+    <div>
+      <img style={{ width: "100%" }} src="/static/images/projects/proj_gal_topimgtxt.png" alt="glarrybanner"/>
+    </div>
+
+    <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          p: 1,
+          m: 1,
+        }}
+      >
+        <Button href="\projects/forest" style={{ width: "33.33%" }}>
+          <img src="/static/images/projects/proj_gal_img1.png" alt="forest" style={{ width: "100%" }} />
+        </Button>
+        
+        <Button href="\projects/ocean" style={{ width: "33.33%" }}>
+          <img src="/static/images/projects/proj_gal_oceanimg.png" alt="ocean" style={{ width: "100%" }}/>
+        </Button>
+
+        <Button href="\projects/forest" style={{ width: "33.33%" }}>
+          <img src="/static/images/projects/proj_gal_img3.png" alt="other" style={{ width: "100%" }} />
+        </Button>
+    </Box>
+      
     </HeaderLayout>
   );
 }
+
+
 
 export default ProjectGallary;
