@@ -5,11 +5,11 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import MessageIcon from '@mui/icons-material/Message';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 function ProjectDetail() {
   let { category, id } = useParams();
-  let projectDetail = JSON.parse(localStorage.getItem("projects"))[category][id]
+  let projectDetail = JSON.parse(localStorage.getItem('projects'))[category][id];
 
   return (
     <HeaderLayout>
@@ -21,10 +21,7 @@ function ProjectDetail() {
           <Grid container spacing={3}>
             <Grid item lg={4} md={6} xs={12}>
               <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                  component="img"
-                  image={projectDetail.image}
-                />
+                <CardMedia component="img" image={projectDetail.image} />
               </Card>
             </Grid>
             <Grid item lg={8} md={6} xs={12}>
@@ -48,7 +45,7 @@ function ProjectDetail() {
             </Grid>
           </Grid>
           <Typography sx={{ mt: 3, mb: 3 }} variant="body1">
-            Project Description: {projectDetail.description}
+            {projectDetail.description}
           </Typography>
           <Grid container spacing={3}>
             <Grid item lg={4} md={6} xs={12}>
@@ -59,7 +56,7 @@ function ProjectDetail() {
             <Grid item lg={4} md={6} xs={12}>
               <Button
                 component="a"
-                startIcon={<CurrencyExchangeIcon fontSize="medium" />}
+                startIcon={<MessageIcon fontSize="medium" />}
                 sx={{ mt: 6, mb: 3 }}
                 variant="contained"
                 href="/"
@@ -78,7 +75,7 @@ function ProjectDetail() {
             <Grid item lg={4} md={6} xs={12}>
               <Button
                 component="a"
-                startIcon={<MessageIcon fontSize="medium" />}
+                startIcon={<CurrencyExchangeIcon fontSize="medium" />}
                 sx={{ mt: 6, mb: 3 }}
                 variant="contained"
                 href="/"
