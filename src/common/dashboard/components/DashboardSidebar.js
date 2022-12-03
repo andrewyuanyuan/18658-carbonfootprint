@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, Divider, Drawer, Typography, useMediaQuery, Menu, MenuItem } from '@mui/material';
 import CogIcon from '../../../icons/cog';
 import LockIcon from '../../../icons/lock';
 import SelectorIcon from '../../../icons/selector';
@@ -13,38 +13,64 @@ import EmissionquotaIcon from '../../../icons/emissonquota';
 
 import NavItem from './NavItem';
 
-const items = [
-  {
-    href: '/customization',
-    icon: <CustomizationIcon fontSize="small" />,
-    title: 'Customization',
-  },
-  {
-    href: '/dashboard',
-    icon: <RecentIcon fontSize="small" />,
-    title: 'Recent',
-  },
-  {
-    href: '/transactions',
-    icon: <TransactionIcon fontSize="small" />,
-    title: 'Transactions',
-  },
-  {
-    href: '/balance',
-    icon: <BalanceIcon fontSize="small" />,
-    title: 'Balance',
-  },
-  {
-    href: '/emissionquota',
-    icon: <EmissionquotaIcon fontSize="small" />,
-    title: 'Emission Quota',
-  },
-  {
-    href: '/test',
-    icon: <CogIcon fontSize="small" />,
-    title: 'Test Page',
-  },
-];
+const currentRole = localStorage.getItem('currentrole');
+
+const items =
+  currentRole === 'investor'
+    ? [
+        {
+          href: '/customization',
+          icon: <CustomizationIcon fontSize="small" />,
+          title: 'Customization',
+        },
+        {
+          href: '/dashboard',
+          icon: <RecentIcon fontSize="small" />,
+          title: 'Recent',
+        },
+        {
+          href: '/transactions',
+          icon: <TransactionIcon fontSize="small" />,
+          title: 'Transactions',
+        },
+        {
+          href: '/balance',
+          icon: <BalanceIcon fontSize="small" />,
+          title: 'Balance',
+        },
+        {
+          href: '/emissionquota',
+          icon: <EmissionquotaIcon fontSize="small" />,
+          title: 'Emission Quota',
+        },
+        {
+          href: '/test',
+          icon: <CogIcon fontSize="small" />,
+          title: 'Test Page',
+        },
+      ]
+    : [
+        {
+          href: '/customization-fundrasing',
+          icon: <CustomizationIcon fontSize="small" />,
+          title: 'Customization',
+        },
+        {
+          href: '/dashboard-fundrasing',
+          icon: <RecentIcon fontSize="small" />,
+          title: 'Recent',
+        },
+        {
+          href: '/progress-fundrasing',
+          icon: <TransactionIcon fontSize="small" />,
+          title: 'Progress',
+        },
+        {
+          href: '/bank-activity',
+          icon: <BalanceIcon fontSize="small" />,
+          title: 'BankActivity',
+        },
+      ];
 
 const loginItem = {
   href: '/login',
@@ -91,7 +117,7 @@ const DashboardSidebar = (props) => {
                     {localStorage.getItem('username')}
                   </Typography>
                   <Typography color="neutral.400" variant="body2">
-                    Your role : Referrer
+                    Your role : {localStorage.getItem('currentrole')}
                   </Typography>
                 </div>
                 <SelectorIcon
