@@ -1,5 +1,7 @@
-import projects from "../__mocks__/projects";
+import projects from '../__mocks__/projects';
 
 export default function LoadMockData() {
-  localStorage.setItem("projects", JSON.stringify(projects));
+  localStorage.setItem("currentuser", "investor");
+
+  localStorage.setItem('projects', JSON.stringify(projects));
 }
