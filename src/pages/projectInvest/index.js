@@ -38,8 +38,12 @@ function ProjectInvest() {
     const handleSnackClose = () => {
         setOpen(false);
     };
-    const paymentAlert = () => {
-
+    const paymentAlert = (message) => {
+        let all_project = JSON.parse(localStorage.getItem("projects"));
+        let set_to = parseFloat(all_project[category][id].donationReceived) + parseFloat(message);
+        all_project[category][id].donationReceived = set_to;
+        localStorage.setItem("projects", JSON.stringify(all_project));
+        console.log(JSON.parse(localStorage.getItem("projects"))[category][id].donationReceived)
         setSnackOpen(true);
         // setOpen(false);
     };
@@ -54,9 +58,9 @@ function ProjectInvest() {
         if (isNaN(final_price)) {
             final_price = 0
         }
-        setMessage(final_price);
+        setMessage(final_price.toFixed(2));
 
-        console.log(target_amount * result)
+        console.log(final_price.toFixed(2))
     };
     return (
         <HeaderLayout>
@@ -123,7 +127,7 @@ function ProjectInvest() {
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={handleClose}>No</Button>
-                                    <Button onClick={paymentAlert} autoFocus>
+                                    <Button onClick={() => paymentAlert(message)} autoFocus>
                                         Yes
                                     </Button>
                                     <Snackbar sx={{ height: "70%" }} anchorOrigin={{
