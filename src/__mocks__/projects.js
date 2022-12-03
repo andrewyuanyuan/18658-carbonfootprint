@@ -18,7 +18,7 @@ const projects = {
       description: 'Investing in clean ocean technologies.',
       image: '/static/images/projects/ocean/CleanOcean.png',
     },
-    "whaledefender": {
+    whaledefender: {
       name: 'Whale Defender',
       city: 'Fremont, CA',
       country: 'U.S.',
@@ -71,4 +71,4 @@ const projects = {
   },
 }
 
-export default projects
+export default projects;

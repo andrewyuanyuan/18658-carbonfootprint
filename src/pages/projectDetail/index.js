@@ -5,11 +5,11 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import MessageIcon from '@mui/icons-material/Message';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 function ProjectDetail() {
   let { category, id } = useParams();
-  let projectDetail = JSON.parse(localStorage.getItem("projects"))[category][id]
+  let projectDetail = JSON.parse(localStorage.getItem('projects'))[category][id];
 
   return (
     <HeaderLayout>
@@ -21,10 +21,7 @@ function ProjectDetail() {
           <Grid container spacing={3}>
             <Grid item lg={4} md={6} xs={12}>
               <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                  component="img"
-                  image={projectDetail.image}
-                />
+                <CardMedia component="img" image={projectDetail.image} />
               </Card>
             </Grid>
             <Grid item lg={8} md={6} xs={12}>
