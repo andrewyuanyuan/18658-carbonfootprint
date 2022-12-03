@@ -48,11 +48,19 @@ const HeaderNavbar = (props) => {
             </Button>
           </Box>
 
-          <Box sx={{ m: 1 }}>
-            <Button href="\dashboard" color="primary" variant="text">
-              Account Dashboard
-            </Button>
-          </Box>
+          {localStorage.getItem('currentrole') === 'investor' ? (
+            <Box sx={{ m: 1 }}>
+              <Button href="\dashboard" color="primary" variant="text">
+                Accounting Dashboard
+              </Button>
+            </Box>
+          ) : (
+            <Box sx={{ m: 1 }}>
+              <Button href="\dashboard-fundrasing" color="primary" variant="text">
+                Fund Raising Dashboard
+              </Button>
+            </Box>
+          )}
 
           <Box sx={{ flexGrow: 1 }} />
 
