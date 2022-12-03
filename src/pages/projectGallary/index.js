@@ -13,6 +13,7 @@ function ProjectGallary() {
     { url: "/static/images/projects/proj_gal_topimgtxt.png", title: "beach" },
     { url: "/static/images/projects/ocean/CleanOcean.png", title: "oceanProtector" },
   ];
+
   const containerStyles = {
     width: "500px",
     height: "280px",
