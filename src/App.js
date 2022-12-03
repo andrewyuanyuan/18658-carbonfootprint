@@ -7,11 +7,11 @@ import AccountDashboard from './pages/accountDashboard';
 import Projects from './pages/projects';
 import ProjectDetail from './pages/projectDetail';
 
-import Balance from './pages/dashboard/balance';
-import Customization from './pages/dashboard/customization';
-import EmissionQuota from './pages/dashboard/emissionQuota';
-import Recent from './pages/dashboard/recent';
-import Transaction from './pages/dashboard/transaction';
+import Balance from './pages/carbondashboard/balance';
+import Customization from './pages/carbondashboard/customization';
+import EmissionQuota from './pages/carbondashboard/emissionQuota';
+import Recent from './pages/carbondashboard/recent';
+import Transaction from './pages/carbondashboard/transaction';
 
 import Test from './pages/test';
 import LoadMockData from './utils/load-mock-data';
