@@ -4,34 +4,41 @@ import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/ma
 import CogIcon from '../../../icons/cog';
 import LockIcon from '../../../icons/lock';
 import SelectorIcon from '../../../icons/selector';
+
+import CustomizationIcon from '../../../icons/customization';
+import RecentIcon from '../../../icons/recent';
+import TransactionIcon from '../../../icons/transaction';
+import BalanceIcon from '../../../icons/balance';
+import EmissionquotaIcon from '../../../icons/emissonquota';
+
 import NavItem from './NavItem';
 
 const items = [
-  // {
-  //   href: '/customization',
-  //   icon: <CogIcon fontSize="small" />,
-  //   title: 'Customization',
-  // },
-  // {
-  //   href: '/recent',
-  //   icon: <CogIcon fontSize="small" />,
-  //   title: 'Recent',
-  // },
-  // {
-  //   href: '/transactions',
-  //   icon: <CogIcon fontSize="small" />,
-  //   title: 'Transactions',
-  // },
-  // {
-  //   href: '/balance',
-  //   icon: <CogIcon fontSize="small" />,
-  //   title: 'Balance',
-  // },
-  // {
-  //   href: '/emissionquota',
-  //   icon: <CogIcon fontSize="small" />,
-  //   title: 'Emission Quota',
-  // },
+  {
+    href: '/customization',
+    icon: <CustomizationIcon fontSize="small" />,
+    title: 'Customization',
+  },
+  {
+    href: '/recent',
+    icon: <RecentIcon fontSize="small" />,
+    title: 'Recent',
+  },
+  {
+    href: '/transactions',
+    icon: <TransactionIcon fontSize="small" />,
+    title: 'Transactions',
+  },
+  {
+    href: '/balance',
+    icon: <BalanceIcon fontSize="small" />,
+    title: 'Balance',
+  },
+  {
+    href: '/emissionquota',
+    icon: <EmissionquotaIcon fontSize="small" />,
+    title: 'Emission Quota',
+  },
   {
     href: '/test',
     icon: <CogIcon fontSize="small" />,

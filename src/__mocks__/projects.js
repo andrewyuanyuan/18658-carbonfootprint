@@ -1,8 +1,8 @@
 import { v4 as uuid } from 'uuid';
 
 const projects = {
-  "ocean": {
-    "cleanocean": {
+  ocean: {
+    cleanocean: {
       name: 'Clean Ocean',
       city: 'Fremont, CA',
       country: 'U.S.',
@@ -11,7 +11,7 @@ const projects = {
       description: 'Investing in clean ocean technologies',
       image: '/static/images/projects/ocean/CleanOcean.png',
     },
-    "whaledefender": {
+    whaledefender: {
       name: 'Whale Defender',
       city: 'Fremont, CA',
       country: 'U.S.',
@@ -21,8 +21,8 @@ const projects = {
       image: '/static/images/projects/ocean/WhaleDefender.png',
     },
   },
-  "animal": {},
-  "forest": {},
-}
+  animal: {},
+  forest: {},
+};
 
-export default projects
+export default projects;
