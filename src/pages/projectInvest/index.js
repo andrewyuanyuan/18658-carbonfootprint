@@ -12,6 +12,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
 
 
 
@@ -20,6 +25,7 @@ function ProjectInvest() {
     let { category, id } = useParams();
     let projectDetail = JSON.parse(localStorage.getItem("projects"))[category][id]
     const [open, setOpen] = React.useState(false);
+    const [snackOpen, setSnackOpen] = React.useState(false);
     const [message, setMessage] = React.useState('');
     const handleClickOpen = () => {
         setOpen(true);
@@ -27,7 +33,17 @@ function ProjectInvest() {
 
     const handleClose = () => {
         setOpen(false);
+        setSnackOpen(false);
     };
+    const handleSnackClose = () => {
+        setOpen(false);
+    };
+    const paymentAlert = () => {
+
+        setSnackOpen(true);
+        // setOpen(false);
+    };
+
 
     const amountConversion = event => {
         let price = projectDetail.pricing
@@ -69,7 +85,7 @@ function ProjectInvest() {
                                 <Typography sx={{ mb: 4 }} variant="h6">
                                     How much Carbon do you want to offset today?
                                 </Typography>
-                                    <TextField id="standard-basic" label="Amount" variant="standard" onChange={amountConversion}/>
+                                    <TextField id="standard-basic" label="Amount/tCO2e" variant="standard" onChange={amountConversion}/>
                                 <Typography sx={{ mb: 4 }} variant="h6">
                                     Price: ${message}
                                 </Typography>
@@ -107,11 +123,20 @@ function ProjectInvest() {
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={handleClose}>No</Button>
-                                    <Button onClick={handleClose} autoFocus>
+                                    <Button onClick={paymentAlert} autoFocus>
                                         Yes
                                     </Button>
+                                    <Snackbar sx={{ height: "70%" }} anchorOrigin={{
+                                        vertical: "top",
+                                        horizontal: "center"
+                                    }} open={snackOpen} autoHideDuration={6000} onClose={handleClose}>
+                                        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                                            Congratualations! You can check your transactions in accounting dashboard
+                                        </Alert>
+                                    </Snackbar>
                                 </DialogActions>
                             </Dialog>
+
                         </Grid>
                     </Grid>
                 </Container>
