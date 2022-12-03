@@ -21,6 +21,9 @@ import FundrasingBackActivity from './pages/fundraisingdashboard/bankactivity';
 
 import Test from './pages/test';
 import store from './store';
+
+import PostProject from './pages/postProject';
+
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -49,6 +52,8 @@ function Album() {
             <Route exact path="/projects/:category" element={<Projects />} />
             <Route exact path="/projects/:category/:id" element={<ProjectDetail />} />
             <Route exact path="/projects/investment/:category/:id" element={<ProjectInvest />} />
+            
+            <Route exact path="/postProject" element={<PostProject />} />
           </Routes>
         </BrowserRouter>
       </React.Fragment>
