@@ -4,7 +4,7 @@ import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme } from '@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-const Sales = (props) => {
+const Investment = (props) => {
   const theme = useTheme();
 
   const data = {
@@ -90,7 +90,7 @@ const Sales = (props) => {
             Last 7 days
           </Button>
         }
-        title="Your Sales"
+        title="Latest Investment"
       />
       <Divider />
       <CardContent>
@@ -119,4 +119,4 @@ const Sales = (props) => {
   );
 };
 
-export default Sales;
+export default Investment;

@@ -13,7 +13,7 @@ import EmissionquotaIcon from '../../../icons/emissonquota';
 
 import NavItem from './NavItem';
 
-const currentRole = localStorage.getItem('currentrole');
+const currentRole = localStorage.getItem('role');
 
 const items =
   currentRole === 'investor'
@@ -100,34 +100,34 @@ const DashboardSidebar = (props) => {
         <div>
           <Box sx={{ px: 2 }}>
             {loginStatus ? (
-              <Box
-                sx={{
-                  alignItems: 'center',
-                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  px: 3,
-                  py: '11px',
-                  borderRadius: 1,
-                }}
-              >
-                <div>
-                  <Typography color="inherit" variant="subtitle1">
-                    {localStorage.getItem('username')}
-                  </Typography>
-                  <Typography color="neutral.400" variant="body2">
-                    Your role : {localStorage.getItem('currentrole')}
-                  </Typography>
-                </div>
-                <SelectorIcon
+                <Box
                   sx={{
-                    color: 'neutral.500',
-                    width: 14,
-                    height: 14,
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    px: 3,
+                    py: '11px',
+                    borderRadius: 1,
                   }}
-                />
-              </Box>
+                >
+                  <div>
+                    <Typography color="inherit" variant="subtitle1">
+                      {localStorage.getItem('username')}
+                    </Typography>
+                    <Typography color="neutral.400" variant="body2">
+                      Your role : Referrer
+                    </Typography>
+                  </div>
+                  <SelectorIcon
+                    sx={{
+                      color: 'neutral.500',
+                      width: 14,
+                      height: 14,
+                    }}
+                  />
+                </Box>
             ) : (
               <Button href={loginItem.href} startIcon={loginItem.icon} fullWidth color="primary" variant="contained">
                 {loginItem.title}

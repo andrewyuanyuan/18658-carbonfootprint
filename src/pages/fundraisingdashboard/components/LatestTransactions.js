@@ -21,66 +21,66 @@ const trans = [
   {
     id: uuid(),
     ref: 'CDD1049',
-    amount: +2500.95,
+    amount: -30.5,
     project: {
       name: 'Ocean Power',
     },
     createdAt: 1555016400000,
-    type: 'deposit',
+    status: 'pending',
   },
   {
     id: uuid(),
     ref: 'CDD1048',
-    amount: +2500.95,
+    amount: -25.1,
     project: {
       name: 'Whale Defender',
     },
     createdAt: 1555016400000,
-    type: 'deposit',
+    status: 'delivered',
   },
   {
     id: uuid(),
     ref: 'CDD1047',
-    amount: +1000.0,
+    amount: +10.99,
     project: {
       name: 'Green City',
     },
     createdAt: 1554930000000,
-    type: 'deposit',
+    status: 'refunded',
   },
   {
     id: uuid(),
     ref: 'CDD1046',
-    amount: -30450,
+    amount: -96.43,
     project: {
       name: 'Nanaimo Landfill Gas Capture',
     },
     createdAt: 1554757200000,
-    type: 'paidoff',
+    status: 'pending',
   },
   {
     id: uuid(),
     ref: 'CDD1045',
-    amount: -20000,
+    amount: -32.54,
     project: {
       name: 'NL Climate & Ecosystem Conservancy',
     },
     createdAt: 1554670800000,
-    type: 'paidoff',
+    status: 'delivered',
   },
   {
     id: uuid(),
     ref: 'CDD1044',
-    amount: -4000.25,
+    amount: -16.76,
     project: {
       name: 'Thermal Residential Heating Aggregation',
     },
     createdAt: 1554670800000,
-    type: 'paidoff',
+    status: 'delivered',
   },
 ];
 
-const BankActivity = (props) => (
+const LatestTransactions = (props) => (
   <Card {...props}>
     <CardHeader title="Latest Transactions" />
     <PerfectScrollbar>
@@ -109,8 +109,12 @@ const BankActivity = (props) => (
                 <TableCell>{tran.amount}</TableCell>
                 <TableCell>{format(tran.createdAt, 'dd/MM/yyyy')}</TableCell>
                 <TableCell>
-                  <SeverityPill color={(tran.type === 'deposit' && 'success') || (tran.type === 'paidoff' && 'error')}>
-                    {tran.type === 'deposit' ? 'Deposit' : 'Balance Paid Off'}
+                  <SeverityPill
+                    color={
+                      (tran.status === 'delivered' && 'success') || (tran.status === 'refunded' && 'error') || 'warning'
+                    }
+                  >
+                    {tran.status}
                   </SeverityPill>
                 </TableCell>
               </TableRow>
@@ -133,4 +137,4 @@ const BankActivity = (props) => (
   </Card>
 );
 
-export default BankActivity;
+export default LatestTransactions;

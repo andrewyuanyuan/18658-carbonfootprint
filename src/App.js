@@ -24,6 +24,7 @@ import store from './store';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+
 function Album() {
   return (
     <Provider store={store}>
@@ -49,6 +50,7 @@ function Album() {
             <Route exact path="/projects/:category" element={<Projects />} />
             <Route exact path="/projects/:category/:id" element={<ProjectDetail />} />
             <Route exact path="/projects/investment/:category/:id" element={<ProjectInvest />} />
+
           </Routes>
         </BrowserRouter>
       </React.Fragment>

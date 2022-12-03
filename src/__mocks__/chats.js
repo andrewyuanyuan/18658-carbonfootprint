@@ -1,11 +1,11 @@
 const chats = {
-  'abbysmith,chrisjohnson': [
+  "abbysmith,chrisjohnson": [
     {
-      sender: 'chrisjohnson',
-      receiver: 'abbysmith',
-      message: 'Hi!',
-    },
+      "sender": "chrisjohnson",
+      "receiver": "abbysmith",
+      "message": "Hi!",
+    }
   ],
-};
+}
 
 export default chats;

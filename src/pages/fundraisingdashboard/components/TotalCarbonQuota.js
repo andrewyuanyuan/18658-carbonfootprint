@@ -1,35 +1,32 @@
-import { Avatar, Box, Card, CardContent, Grid, LinearProgress, Typography } from '@mui/material';
-import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
+import { Avatar, Card, CardContent, Grid, Typography } from '@mui/material';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
-const QuotaStatus = (props) => (
-  <Card sx={{ height: '100%' }} {...props}>
+const TotalCarbonQuota = (props) => (
+  <Card {...props}>
     <CardContent>
       <Grid container spacing={3} sx={{ justifyContent: 'space-between' }}>
         <Grid item>
           <Typography color="textSecondary" gutterBottom variant="overline">
-            ONGOING PROJECTS
+            TOTAL CARBON QUOTA
           </Typography>
           <Typography color="textPrimary" variant="h4">
-            4
+            40 tCO2e
           </Typography>
         </Grid>
         <Grid item>
           <Avatar
             sx={{
-              backgroundColor: 'warning.main',
+              backgroundColor: 'primary.main',
               height: 56,
               width: 56,
             }}
           >
-            <InsertChartIcon />
+            <AttachMoneyIcon />
           </Avatar>
         </Grid>
       </Grid>
-      <Box sx={{ pt: 3 }}>
-        <LinearProgress value={75} variant="determinate" />
-      </Box>
     </CardContent>
   </Card>
 );
 
-export default QuotaStatus;
+export default TotalCarbonQuota;
