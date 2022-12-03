@@ -1,6 +1,7 @@
 const users = {
-  "investor":{
-    name: "investor",
+  "chrisjohnson":{
+    name: "Chris Johnson",
+    role: "investor",
     avatar: "/static/images/avatar/avatar_13.png",
     notification: false,
     transactions: [
@@ -10,8 +11,9 @@ const users = {
       }
     ],
   },
-  "provider":{
-    name: "provider",
+  "abbysmith":{
+    name: "Abby Smith",
+    role: "provider",
     avatar: "/static/images/avatar/avatar_14.png",
     notification: false,
     projects: [

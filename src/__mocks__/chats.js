@@ -1,8 +1,8 @@
 const chats = {
-  "investor,provider": [
+  "abbysmith,chrisjohnson": [
     {
-      "sender": "investor",
-      "receiver": "provider",
+      "sender": "chrisjohnson",
+      "receiver": "abbysmith",
       "message": "Hi!",
     }
   ],
