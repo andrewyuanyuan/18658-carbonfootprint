@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, Divider, Drawer, Typography, useMediaQuery, Menu, MenuItem } from '@mui/material';
 import CogIcon from '../../../icons/cog';
 import LockIcon from '../../../icons/lock';
 import SelectorIcon from '../../../icons/selector';
@@ -13,38 +13,64 @@ import EmissionquotaIcon from '../../../icons/emissonquota';
 
 import NavItem from './NavItem';
 
-const items = [
-  {
-    href: '/customization',
-    icon: <CustomizationIcon fontSize="small" />,
-    title: 'Customization',
-  },
-  {
-    href: '/dashboard',
-    icon: <RecentIcon fontSize="small" />,
-    title: 'Recent',
-  },
-  {
-    href: '/transactions',
-    icon: <TransactionIcon fontSize="small" />,
-    title: 'Transactions',
-  },
-  {
-    href: '/balance',
-    icon: <BalanceIcon fontSize="small" />,
-    title: 'Balance',
-  },
-  {
-    href: '/emissionquota',
-    icon: <EmissionquotaIcon fontSize="small" />,
-    title: 'Emission Quota',
-  },
-  {
-    href: '/test',
-    icon: <CogIcon fontSize="small" />,
-    title: 'Test Page',
-  },
-];
+const currentRole = localStorage.getItem('role');
+
+const items =
+  currentRole === 'investor'
+    ? [
+        {
+          href: '/customization',
+          icon: <CustomizationIcon fontSize="small" />,
+          title: 'Customization',
+        },
+        {
+          href: '/dashboard',
+          icon: <RecentIcon fontSize="small" />,
+          title: 'Recent',
+        },
+        {
+          href: '/transactions',
+          icon: <TransactionIcon fontSize="small" />,
+          title: 'Transactions',
+        },
+        {
+          href: '/balance',
+          icon: <BalanceIcon fontSize="small" />,
+          title: 'Balance',
+        },
+        {
+          href: '/emissionquota',
+          icon: <EmissionquotaIcon fontSize="small" />,
+          title: 'Emission Quota',
+        },
+        {
+          href: '/test',
+          icon: <CogIcon fontSize="small" />,
+          title: 'Test Page',
+        },
+      ]
+    : [
+        {
+          href: '/customization-fundrasing',
+          icon: <CustomizationIcon fontSize="small" />,
+          title: 'Customization',
+        },
+        {
+          href: '/dashboard-fundrasing',
+          icon: <RecentIcon fontSize="small" />,
+          title: 'Recent',
+        },
+        {
+          href: '/progress-fundrasing',
+          icon: <TransactionIcon fontSize="small" />,
+          title: 'Progress',
+        },
+        {
+          href: '/bank-activity',
+          icon: <BalanceIcon fontSize="small" />,
+          title: 'BankActivity',
+        },
+      ];
 
 const loginItem = {
   href: '/login',
@@ -74,34 +100,34 @@ const DashboardSidebar = (props) => {
         <div>
           <Box sx={{ px: 2 }}>
             {loginStatus ? (
-              <Box
-                sx={{
-                  alignItems: 'center',
-                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  px: 3,
-                  py: '11px',
-                  borderRadius: 1,
-                }}
-              >
-                <div>
-                  <Typography color="inherit" variant="subtitle1">
-                    {localStorage.getItem('username')}
-                  </Typography>
-                  <Typography color="neutral.400" variant="body2">
-                    Your role : Referrer
-                  </Typography>
-                </div>
-                <SelectorIcon
+                <Box
                   sx={{
-                    color: 'neutral.500',
-                    width: 14,
-                    height: 14,
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    px: 3,
+                    py: '11px',
+                    borderRadius: 1,
                   }}
-                />
-              </Box>
+                >
+                  <div>
+                    <Typography color="inherit" variant="subtitle1">
+                      {localStorage.getItem('username')}
+                    </Typography>
+                    <Typography color="neutral.400" variant="body2">
+                      Your role : Referrer
+                    </Typography>
+                  </div>
+                  <SelectorIcon
+                    sx={{
+                      color: 'neutral.500',
+                      width: 14,
+                      height: 14,
+                    }}
+                  />
+                </Box>
             ) : (
               <Button href={loginItem.href} startIcon={loginItem.icon} fullWidth color="primary" variant="contained">
                 {loginItem.title}
