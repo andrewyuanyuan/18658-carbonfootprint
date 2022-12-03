@@ -15,14 +15,12 @@ import Recent from './pages/carbondashboard/recent';
 import Transaction from './pages/carbondashboard/transaction';
 
 import Test from './pages/test';
-import LoadMockData from './utils/load-mock-data';
 import store from './store';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 function Album() {
-  LoadMockData();
   return (
     <Provider store={store}>
       <React.Fragment>
