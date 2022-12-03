@@ -45,7 +45,7 @@ function ProjectDetail() {
             </Grid>
           </Grid>
           <Typography sx={{ mt: 3, mb: 3 }} variant="body1">
-            Project Description: {projectDetail.description}
+            {projectDetail.description}
           </Typography>
           <Grid container spacing={3}>
             <Grid item lg={4} md={6} xs={12}>
@@ -56,7 +56,7 @@ function ProjectDetail() {
             <Grid item lg={4} md={6} xs={12}>
               <Button
                 component="a"
-                startIcon={<CurrencyExchangeIcon fontSize="medium" />}
+                startIcon={<MessageIcon fontSize="medium" />}
                 sx={{ mt: 6, mb: 3 }}
                 variant="contained"
                 href="/"
@@ -75,7 +75,7 @@ function ProjectDetail() {
             <Grid item lg={4} md={6} xs={12}>
               <Button
                 component="a"
-                startIcon={<MessageIcon fontSize="medium" />}
+                startIcon={<CurrencyExchangeIcon fontSize="medium" />}
                 sx={{ mt: 6, mb: 3 }}
                 variant="contained"
                 href="/"

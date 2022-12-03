@@ -7,7 +7,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function ProjectCard(props) {
-  let link = '/projects/' + props.category + '/' + props.id;
+  let link = "/projects/" + props.category + "/" + props.id
+  let description = props.description.substring(0, props.description.indexOf("."))
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia component="img" height="140" image={props.image} />
@@ -16,7 +17,7 @@ export default function ProjectCard(props) {
           {props.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {props.description}
+          {description}
         </Typography>
       </CardContent>
       <CardActions>
