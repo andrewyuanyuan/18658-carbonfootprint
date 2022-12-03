@@ -48,7 +48,7 @@ const HeaderNavbar = (props) => {
             </Button>
           </Box>
 
-          {localStorage.getItem('role') === 'investor' ? (
+          {localStorage.getItem('currentrole') === 'investor' ? (
             <Box sx={{ m: 1 }}>
               <Button href="\dashboard" color="primary" variant="text">
                 Accounting Dashboard
