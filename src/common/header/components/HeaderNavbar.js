@@ -64,6 +64,16 @@ const HeaderNavbar = (props) => {
 
           <Box sx={{ flexGrow: 1 }} />
 
+          {localStorage.getItem('currentrole') === 'owner' ? (
+            <Box sx={{ m: 1 }}>
+              <Button href="\dashboard-fundrasing" color="primary" variant="text">
+                My Projects
+              </Button>
+            </Box>
+          ) : (
+            <></>
+          )}
+
           {loginStatus ? (
             <>
               <Tooltip title="Notifications">
