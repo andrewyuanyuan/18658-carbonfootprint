@@ -21,6 +21,8 @@ function EditProjectDetail(props) {
   const getProjectId = (name) => {
     return name.replace(/\s/g, '').toLowerCase();
   };
+  const pid = getProjectId(props.name);
+  const ptype = props.type;
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -51,13 +53,18 @@ function EditProjectDetail(props) {
       image: props.image,
       description: description,
       owner: localStorage.getItem('currentuser'),
-      contact: JSON.parse(localStorage.getItem('users'))[localStorage.getItem('currentuser')]['name']
+      contact: JSON.parse(localStorage.getItem('users'))[localStorage.getItem('currentuser')]['name'],
     };
+    console.log(projectType);
     data[projectType][getProjectId(name)] = jsonData;
     localStorage.setItem('projects', JSON.stringify(data));
-    var tmp = Array.from(JSON.parse(localStorage.getItem('myProjects')));
-    tmp.push(projectType + '/' + name);
-    localStorage.setItem('myProjects', JSON.stringify(Array.from(new Set(tmp))));
+    var tmp = new Set(Array.from(JSON.parse(localStorage.getItem('myProjects'))));
+    if (pid !== null && ptype !== null) {
+      tmp.delete(ptype + '/' + pid);
+    }
+    console.log(ptype + '/' + pid);
+    tmp.add(projectType + '/' + getProjectId(name));
+    localStorage.setItem('myProjects', JSON.stringify(Array.from(tmp)));
     console.log(localStorage.getItem('myProjects'));
     window.location.href = '/myProjects';
   };
