@@ -13,8 +13,7 @@ function ProjectDetail() {
   console.log(id);
   let projectDetail = JSON.parse(localStorage.getItem('projects'))[category][id];
   const isInvestor = localStorage.getItem('currentrole') === 'investor';
-  const isMyProject =
-    projectDetail.owner !== null ? localStorage.getItem('currentuser') === projectDetail.owner : false;
+  const isMyProject = localStorage.getItem('currentuser') === projectDetail.owner;
 
   return (
     <HeaderLayout>
