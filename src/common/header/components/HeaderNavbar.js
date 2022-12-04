@@ -19,7 +19,7 @@ const HeaderNavbar = (props) => {
   const [loginStatus, setloginStatus] = useState(false);
 
   useEffect(() => {
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem('username') || localStorage.getItem('currentuser');
     if (username) {
       setloginStatus(true);
     }
@@ -60,6 +60,26 @@ const HeaderNavbar = (props) => {
                 Fund Raising Dashboard
               </Button>
             </Box>
+          )}
+
+          {localStorage.getItem('currentrole') === 'owner' ? (
+            <Box sx={{ m: 1 }}>
+              <Button href="\postProject" color="primary" variant="text">
+                Post Project
+              </Button>
+            </Box>
+          ) : (
+            <></>
+          )}
+
+          {localStorage.getItem('currentrole') === 'owner' ? (
+            <Box sx={{ m: 1 }}>
+              <Button href="\myProjects" color="primary" variant="text">
+                My Projects
+              </Button>
+            </Box>
+          ) : (
+            <></>
           )}
 
           <Box sx={{ flexGrow: 1 }} />

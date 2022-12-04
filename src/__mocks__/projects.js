@@ -11,6 +11,7 @@ const projects = {
       image: '/static/images/projects/ocean/PlasticBank.png',
       donationReceived: 1000,
       donationGoal: 100000,
+      owner: "chrisjohnson",
     },
     cleanocean: {
       name: 'Clean Ocean',
@@ -22,6 +23,7 @@ const projects = {
       image: '/static/images/projects/ocean/CleanOcean.png',
       donationReceived: 15642,
       donationGoal: 100000,
+      owner: "",
     },
     whaledefender: {
       name: 'Whale Defender',
@@ -33,6 +35,7 @@ const projects = {
       image: '/static/images/projects/ocean/WhaleDefender.png',
       donationReceived: 12312,
       donationGoal: 100000,
+      owner: "",
     },
   },
   forest: {
@@ -47,6 +50,7 @@ const projects = {
       image: '/static/images/projects/forest/GreatBearForest.png',
       donationReceived: 50494,
       donationGoal: 100000,
+      owner: "",
     },
     klawockheenya: {
       name: 'Klawock Heenya Improved Forest Management Project',
@@ -59,6 +63,7 @@ const projects = {
       image: '/static/images/projects/forest/KlawockHeenya.png',
       donationReceived: 9998,
       donationGoal: 100000,
+      owner: "",
     },
   },
   renewable: {
@@ -73,6 +78,7 @@ const projects = {
       image: '/static/images/projects/renewable/XinjiangWindFarm.png',
       donationReceived: 98304,
       donationGoal: 100000,
+      owner: "",
     },
     asahanhydroelectric: {
       name: 'Asahan Hydroelectric Power Plant',
@@ -85,6 +91,7 @@ const projects = {
       image: '/static/images/projects/renewable/AsahanHydroelectric.png',
       donationReceived: 34435,
       donationGoal: 100000,
+      owner: "",
     },
   },
 };
