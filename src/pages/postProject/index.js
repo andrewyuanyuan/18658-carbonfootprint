@@ -7,13 +7,14 @@ import EditProjectDetail from './component/EditProjectDetail';
 function PostProject() {
   const { category, id } = useParams();
   let props = {};
+  console.log(category);
 
   if (category === undefined) {
     props = {
       name: '',
-      type: '',
+      type: 'ocean',
       pricing: '',
-      country: '',
+      country: 'Afghanistan',
       city: '',
       image: '/static/images/projects/ocean/WhaleDefender.png',
       description: '',
