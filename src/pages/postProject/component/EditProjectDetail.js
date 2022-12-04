@@ -18,6 +18,10 @@ function EditProjectDetail(props) {
   const [location, setLocation] = useState(props.city);
   const [description, setDescription] = useState(props.description)
 
+  const getProjectId = (name) => {
+    return name.replace(/\s/g, '').toLowerCase();
+  }
+
   const handleName = (e) => {
     setName(e.target.value);
   }
@@ -44,13 +48,15 @@ function EditProjectDetail(props) {
       city: location,
       country: country,
       pricing: pricing,
-      contact: props.contact,
-      image: 'FIXME',
+      image: props.image,
       description: description
     }
-    data[projectType][name] = jsonData
-
+    data[projectType][getProjectId(name)] = jsonData;
     localStorage.setItem('projects', JSON.stringify(data));
+  }
+
+  const onCancel = () => {
+    window.history.go(-1);
   }
 
   return (
@@ -112,7 +118,7 @@ function EditProjectDetail(props) {
               label='Pricing' 
               fullWidth 
               value={pricing}
-              onClick={handlePricing}
+              onChange={handlePricing}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -150,7 +156,7 @@ function EditProjectDetail(props) {
               Project Image
             </Typography>
             <Card sx={{ maxWidth: 345}}>
-              <CardMedia component='img' image={props.image} />
+              <CardMedia component='img' image={props.image} alt="No Image Found"/>
             </Card>
           </Grid>
           <Grid item xs={12}>
@@ -181,6 +187,7 @@ function EditProjectDetail(props) {
             component='a'
             sx={{ mt: 6, mb: 3}}
             variant='contained'
+            onClick={onCancel}
           >
             Cancel
           </Button>

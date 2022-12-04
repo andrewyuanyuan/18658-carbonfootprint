@@ -53,6 +53,7 @@ function Album() {
             <Route exact path="/projects/:category/:id" element={<ProjectDetail />} />
             <Route exact path="/projects/investment/:category/:id" element={<ProjectInvest />} />
             
+            <Route exact path="/postProject/:category/:id" element={<PostProject />} />
             <Route exact path="/postProject" element={<PostProject />} />
           </Routes>
         </BrowserRouter>
