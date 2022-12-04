@@ -103,7 +103,7 @@ function ProjectDetail() {
                 startIcon={<EditIcon fontSize="medium" />}
                 sx={{ mt: 6, mb: 3 }}
                 variant="contained"
-                href={'/projects/investment/' + category + '/' + id}
+                href={'/postProject/' + category + '/' + id}
               >
                 Edit
               </Button>
