@@ -17,6 +17,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
+import {v4 as uuid} from 'uuid';
 
 function ProjectInvest() {
   let { category, id } = useParams();
@@ -27,11 +28,12 @@ function ProjectInvest() {
   const [uinput, setUinput] = React.useState('');
   const handleClickOpen = (message) => {
     // if (!isInteger(message))
-    let test = parseFloat(message);
-    console.log(uinput - parseFloat(uinput));
-    if (isNaN(uinput - parseFloat(uinput))) {
-      alert('Please enter a valid number');
-    } else {
+    let test = parseFloat(message)
+    console.log(uinput - parseFloat(uinput))
+    if(isNaN(uinput - parseFloat(uinput))){
+      alert("Please enter a valid number")
+    }
+    else {
       setOpen(true);
     }
   };
@@ -49,25 +51,36 @@ function ProjectInvest() {
     all_project[category][id].donationReceived = set_to;
     localStorage.setItem('projects', JSON.stringify(all_project));
     let users = JSON.parse(localStorage.getItem('users'));
-    let transactions = users['chrisjohnson'].transactions;
-    let name_check = category + '/' + id;
+    let transactions = users["chrisjohnson"].transactions;
+    let name_check = category + '/' + id
     let exisit_check = false;
     let set_amount = parseFloat(message);
     let current = new Date();
-    users['chrisjohnson'].transactions.push({
-      name: name_check,
-      amount: message,
-      date: current.toLocaleDateString(),
-      time: current.toLocaleTimeString(),
-    });
-    for (let i = 0; i < users['abbysmith'].projects.length; i++) {
-      if (users['abbysmith'].projects[i].localeCompare(name_check) === 0) {
-        users['abbysmith'].transactions.push({
-          name: name_check,
-          amount: message,
-          date: current.toLocaleDateString(),
-          time: current.toLocaleTimeString(),
-        });
+    let status = ['pending', 'delivered', 'refunded'];
+
+    var char_result           = 'CDD';
+    var characters       = '1234567890';
+    var charactersLength = characters.length;
+    let uid = uuid();
+    for ( var i = 0; i < 3; i++ ) {
+      char_result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+
+
+
+
+
+
+    users["chrisjohnson"].transactions.push({'name':name_check,'amount':message, 'date': current.toLocaleDateString(),
+    'time': current.toLocaleTimeString(), 'id': uid, 'ref': char_result, 'projectName':projectDetail.name,
+      'type': status[Math.floor(Math.random() * status.length)]});
+    for(let i =0; i < users["abbysmith"].projects.length; i++)
+    {
+      if(users["abbysmith"].projects[i].localeCompare(name_check) === 0) {
+        users["abbysmith"].transactions.push({'name':name_check,'amount':message, 'date': current.toLocaleDateString(),
+          'time' : current.toLocaleTimeString(),'id': uid, 'ref': char_result, 'projectName':projectDetail.name,
+        'type' : 'deposit'});
       }
     }
     localStorage.setItem('users', JSON.stringify(users));
