@@ -1,4 +1,4 @@
-const users = {
+var users = {
   chrisjohnson: {
     name: 'Chris Johnson',
     role: 'investor',
@@ -16,7 +16,7 @@ const users = {
     role: 'provider',
     avatar: '/static/images/avatar/avatar_14.png',
     notification: false,
-    projects: ['ocean/cleanocean'],
+    projects: ['ocean/cleanocean', 'ocean/cleanocean1'],
   },
 };
 

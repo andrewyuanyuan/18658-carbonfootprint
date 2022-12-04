@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Box, MenuItem, MenuList, Popover, Typography } from '@mui/material';
 import axios from 'axios';
-import ColorToggleButton from '../../../pages/postProject/component/roleSwitch';
+import ColorToggleButton from '../../header/components/roleSwitch';
 
 function logout() {
   return axios.put('/users/logout', {}).then(function (response) {
@@ -14,7 +14,7 @@ function logout() {
 }
 
 const roleMap = {
-  owner: 'Project Owner',
+  provider: 'Project Provider',
   investor: 'Enterprise Investor',
 };
 

@@ -7,7 +7,11 @@ export default function ColorToggleButton() {
 
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
+    const curUser = localStorage.getItem('currentuser');
+    // localStorage.clear();
     localStorage.setItem('currentrole', newAlignment);
+    localStorage.setItem('currentuser', curUser === 'chrisjohnson' ? 'abbysmith' : 'chrisjohnson');
+    // localStorage.setItem('username', curUser === 'chrisjohnson' ? 'abbysmith' : 'chrisjohnson');
     console.log(localStorage.getItem('currentrole'));
     window.location.href = '/';
   };
@@ -15,7 +19,7 @@ export default function ColorToggleButton() {
   return (
     <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange} aria-label="Platform">
       <ToggleButton value="investor">Industrial Investor</ToggleButton>
-      <ToggleButton value="owner">Project Owner</ToggleButton>
+      <ToggleButton value="provider">Project Provider</ToggleButton>
     </ToggleButtonGroup>
   );
 }
