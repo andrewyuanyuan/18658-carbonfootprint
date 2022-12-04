@@ -39,14 +39,13 @@ const RecentProgress = (props) => {
     const curUserProject = [];
     const currentUser = localStorage.getItem('currentuser');
     let projectMap = new Map();
-
     for (let item of users[currentUser].projects) {
       let curProjectMap = item.split('/');
-      projectMap.set(curProjectMap[0], curProjectMap[1]);
+      projectMap.set(curProjectMap[1], curProjectMap[0]);
     }
     for (let item of projectMap) {
-      let projectsUnderCategory = allProjects[item[0]];
-      let curProject = projectsUnderCategory[item[1]];
+      let projectsUnderCategory = allProjects[item[1]];
+      let curProject = projectsUnderCategory[item[0]];
       curUserProject.push(curProject);
     }
     setProjects(curUserProject);

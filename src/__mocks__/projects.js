@@ -11,7 +11,7 @@ const projects = {
       image: '/static/images/projects/ocean/PlasticBank.png',
       donationReceived: 1000,
       donationGoal: 100000,
-      owner: "abbysmith",
+      owner: 'abbysmith',
     },
     cleanocean: {
       name: 'Clean Ocean',
@@ -19,11 +19,12 @@ const projects = {
       country: 'U.S.',
       pricing: '$6.32/tCO2e',
       contact: 'Abby Smith',
-      description: 'The Ocean Cleanup, a non-profit organization, is developing and scaling technologies to rid the world’s oceans of plastic. Our aim is to put ourselves out of business once the oceans are clean.',
+      description:
+        'The Ocean Cleanup, a non-profit organization, is developing and scaling technologies to rid the world’s oceans of plastic. Our aim is to put ourselves out of business once the oceans are clean.',
       image: '/static/images/projects/ocean/CleanOcean.png',
       donationReceived: 3000,
       donationGoal: 100000,
-      owner: "abbysmith",
+      owner: 'abbysmith',
     },
     whaledefender: {
       name: 'Whale Defender',
@@ -35,7 +36,7 @@ const projects = {
       image: '/static/images/projects/ocean/WhaleDefender.png',
       donationReceived: 12312,
       donationGoal: 100000,
-      owner: "abbysmith",
+      owner: 'abbysmith',
     },
   },
   forest: {
@@ -50,7 +51,7 @@ const projects = {
       image: '/static/images/projects/forest/GreatBearForest.png',
       donationReceived: 50494,
       donationGoal: 100000,
-      owner: "jonsnow",
+      owner: 'jonsnow',
     },
     klawockheenya: {
       name: 'Klawock Heenya Improved Forest Management Project',
@@ -63,7 +64,7 @@ const projects = {
       image: '/static/images/projects/forest/KlawockHeenya.png',
       donationReceived: 9998,
       donationGoal: 100000,
-      owner: "edstark",
+      owner: 'edstark',
     },
   },
   renewable: {
@@ -78,7 +79,7 @@ const projects = {
       image: '/static/images/projects/renewable/XinjiangWindFarm.png',
       donationReceived: 98304,
       donationGoal: 100000,
-      owner: "zhengkai",
+      owner: 'zhengkai',
     },
     asahanhydroelectric: {
       name: 'Asahan Hydroelectric Power Plant',
@@ -91,7 +92,7 @@ const projects = {
       image: '/static/images/projects/renewable/AsahanHydroelectric.png',
       donationReceived: 34435,
       donationGoal: 100000,
-      owner: "bajradayasentranusa",
+      owner: 'bajradayasentranusa',
     },
   },
 };

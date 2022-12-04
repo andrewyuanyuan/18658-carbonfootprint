@@ -25,7 +25,7 @@ const BankActivity = (props) => {
     const users = JSON.parse(localStorage.getItem('users'));
     const systemRole = localStorage.getItem('currentrole');
     const currentUser = localStorage.getItem('currentuser');
-    if (users[currentUser].role !== (systemRole === 'owner' ? 'provider' : '')) {
+    if (users[currentUser].role !== systemRole) {
       alert('Role not match, please try another incognito window');
     }
     setCurrentUserTrans(users[currentUser].transactions);

@@ -91,7 +91,7 @@ const DashboardSidebar = (props) => {
     const users = JSON.parse(localStorage.getItem('users'));
     const currentUser = localStorage.getItem('currentuser');
     setUsername(users[currentUser].name);
-    setRole(users[currentUser].role === 'provider' ? 'Project Provider' : 'Project Investor');
+    setRole(users[currentUser].role === 'owner' ? 'Project Provider' : 'Project Investor');
   }, []);
 
   const content = (
