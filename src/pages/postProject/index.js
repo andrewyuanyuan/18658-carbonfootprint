@@ -17,7 +17,7 @@ function PostProject() {
       pricing: '',
       country: '',
       city: '',
-      image: '',
+      image: '/static/images/projects/ocean/WhaleDefender.png',
       description: ''
     }
   } else {

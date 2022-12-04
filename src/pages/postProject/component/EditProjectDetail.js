@@ -68,20 +68,17 @@ function EditProjectDetail(props) {
         rowGap='50px'
         marginLeft='40px'
       >
-        <Grid xs='auto'>
-          <Typography variant="h4">
-            Project Title
-          </Typography>
-          <Typography>
-            Use words people would search for when looking for your project
-          </Typography>
-        </Grid>
-
         <Grid 
           container 
           spacing={8}
         >
           <Grid item xs={12}>
+            <Typography variant="h4">
+              Project Title
+            </Typography>
+            <Typography>
+              Use words people would search for when looking for your project
+            </Typography>
             <TextField
               required
               id='name'
@@ -90,6 +87,9 @@ function EditProjectDetail(props) {
               value={name}
               onChange={handleName}
             />
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant='h4'>Project Specefics</Typography>
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField 
@@ -152,18 +152,18 @@ function EditProjectDetail(props) {
             />
           </Grid>
           <Grid item xs={12}>
-            <Typography variant='h4'>
-              Project Image
-            </Typography>
+            <Typography variant='h4'>Project Image</Typography>
+            <Typography>Improve your project visibility</Typography>
             <Card sx={{ maxWidth: 345}}>
               <CardMedia component='img' image={props.image} alt="No Image Found"/>
             </Card>
           </Grid>
           <Grid item xs={12}>
+            <Typography variant='h4'>Description</Typography>
+            <Typography>Tell the community about your mission, goal and unique features</Typography>
             <TextField
               required
               id='description'
-              label='Description'
               value={description}
               fullWidth
               multiline
