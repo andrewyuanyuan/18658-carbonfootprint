@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import React from 'react';
 import HeaderLayout from '../../common/header';
 import EditProjectDetail from './component/EditProjectDetail';
@@ -11,25 +11,23 @@ function PostProject() {
   // TODO: cancel button in EditProjectDetail
 
   return (
-    <>
+    <Box component='main' sx={{ flexGrow: 1, py: 8, m: 4}}>
       <HeaderLayout>
-        <Grid container>
-          <Grid xs={12}>
-            <EditProjectDetail 
-              name='cleanocean'
-              type='ocean'
-              pricing='pricing'
-              country='China'
-              city='city'
-              image='image'
-              description='description'
-              contact='contact'
-            />
-          </Grid>
+        <Grid container xs={12}>
+          <EditProjectDetail 
+            name='cleanocean'
+            type='ocean'
+            pricing='pricing'
+            country='China'
+            city='city'
+            image='/static/images/projects/ocean/CleanOcean.png'
+            description='description'
+            contact='contact'
+          />
         </Grid>
 
       </HeaderLayout>
-    </>
+    </Box>
   );
 }
 
