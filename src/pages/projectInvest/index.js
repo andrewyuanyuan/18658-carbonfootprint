@@ -55,8 +55,6 @@ function ProjectInvest() {
     let exisit_check = false;
     let set_amount = parseFloat(message);
     let current = new Date();
-    let status = ['pending', 'delivered', 'refunded'];
-
     var char_result = 'CDD';
     var characters = '1234567890';
     var charactersLength = characters.length;
@@ -73,7 +71,7 @@ function ProjectInvest() {
       id: uid,
       ref: char_result,
       projectName: projectDetail.name,
-      type: status[Math.floor(Math.random() * status.length)],
+      type: 'delivered',
     });
     for (let i = 0; i < users['abbysmith'].projects.length; i++) {
       if (users['abbysmith'].projects[i].localeCompare(name_check) === 0) {
