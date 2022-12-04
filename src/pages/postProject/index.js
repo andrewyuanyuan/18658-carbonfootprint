@@ -6,7 +6,6 @@ import EditProjectDetail from './component/EditProjectDetail';
 
 
 function PostProject() {
-  // TODO: edit entry connection
   const { category, id } = useParams();
   let props = {};
 
