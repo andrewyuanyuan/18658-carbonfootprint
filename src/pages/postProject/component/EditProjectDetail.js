@@ -51,6 +51,7 @@ function EditProjectDetail(props) {
       image: props.image,
       description: description,
       owner: localStorage.getItem('currentuser'),
+      contact: JSON.parse(localStorage.getItem('users'))[localStorage.getItem('currentuser')]['name']
     };
     data[projectType][getProjectId(name)] = jsonData;
     localStorage.setItem('projects', JSON.stringify(data));
@@ -81,7 +82,7 @@ function EditProjectDetail(props) {
             <TextField
               required
               id="projectType"
-              label="Project Type"
+              label={projectType === '' ? '' : projectType}
               fullWidth
               select
               value={projectType}
@@ -104,7 +105,7 @@ function EditProjectDetail(props) {
             <TextField
               required
               id="country"
-              label="country"
+              label={countryList.includes(country) ? country : ''}
               fullWidth
               select
               value={country}
