@@ -18,9 +18,6 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 
-function containsNumbers(str) {
-  return /\d/.test(str);
-}
 function ProjectInvest() {
   let { category, id } = useParams();
   let projectDetail = JSON.parse(localStorage.getItem('projects'))[category][id];
@@ -58,8 +55,15 @@ function ProjectInvest() {
     let exisit_check = false;
     let set_amount = parseFloat(message);
     let current = new Date();
-    users["chrisjohnson"].transactions.push({'name':name_check,'amount':message, 'date': current.toLocaleDateString()});
-    users["abbysmith"].transactions.push({'name':name_check,'amount':message, 'date': current.toLocaleDateString()});
+    users["chrisjohnson"].transactions.push({'name':name_check,'amount':message, 'date': current.toLocaleDateString(),
+    'time': current.toLocaleTimeString()});
+    for(let i =0; i < users["abbysmith"].projects.length; i++)
+    {
+      if(users["abbysmith"].projects[i].localeCompare(name_check) === 0) {
+        users["abbysmith"].transactions.push({'name':name_check,'amount':message, 'date': current.toLocaleDateString(),
+          'time' : current.toLocaleTimeString()});
+      }
+    }
     localStorage.setItem('users', JSON.stringify(users));
     setSnackOpen(true);
   };
