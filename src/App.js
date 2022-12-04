@@ -7,6 +7,7 @@ import AccountDashboard from './pages/accountDashboard';
 import Projects from './pages/projects';
 import ProjectDetail from './pages/projectDetail';
 import ProjectInvest from './pages/projectInvest';
+import Chat from './pages/chatroom';
 
 import Balance from './pages/carbondashboard/balance';
 import Customization from './pages/carbondashboard/customization';
@@ -36,6 +37,7 @@ function Album() {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<ProjectGallary />} />
+            <Route exact path="/Chat" element={<Chat />} />
 
             <Route exact path="/dashboard" element={<Recent />} />
             <Route exact path="/customization" element={<Customization />} />
