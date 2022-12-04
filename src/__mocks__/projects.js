@@ -2,7 +2,7 @@ const projects = {
   ocean: {
     plasticbank: {
       name: 'Plastic Bank',
-      city: 'Fremont, CA',
+      city: 'Jakarta',
       country: 'Indonesia',
       pricing: '$0.64/tCO2e',
       contact: 'Abby Smith',
@@ -16,7 +16,7 @@ const projects = {
     cleanocean: {
       name: 'Clean Ocean',
       city: 'Fremont, CA',
-      country: 'U.S.',
+      country: 'United States of America (the)',
       pricing: '$6.32/tCO2e',
       contact: 'Abby Smith',
       description:
@@ -29,7 +29,7 @@ const projects = {
     whaledefender: {
       name: 'Whale Defender',
       city: 'Fremont, CA',
-      country: 'U.S.',
+      country: 'United States of America (the)',
       pricing: '$6.32/tCO2e',
       contact: 'Abby Smith',
       description: 'Studies near extinct whale species and educates the public.',
@@ -56,7 +56,7 @@ const projects = {
     klawockheenya: {
       name: 'Klawock Heenya Improved Forest Management Project',
       city: 'Klawock, Alaska',
-      country: 'US',
+      country: 'United States of America',
       pricing: '$8.32/tCO2e',
       contact: 'Ed Stark',
       description:
