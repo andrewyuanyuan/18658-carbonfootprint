@@ -2,7 +2,7 @@ var users = {
   chrisjohnson: {
     name: 'Chris Johnson',
     role: 'investor',
-    avatar: '/static/images/avatar/avatar_13.png',
+    avatar: '/static/images/avatar/chrisjohnson.png',
     notification: false,
     transactions: [
       {
@@ -20,7 +20,7 @@ var users = {
   abbysmith: {
     name: 'Abby Smith',
     role: 'owner',
-    avatar: '/static/images/avatar/avatar_14.png',
+    avatar: '/static/images/avatar/abbysmith.png',
     notification: false,
     projects: ['ocean/cleanocean', 'ocean/plasticbank', 'ocean/whaledefender'],
     transactions: [
