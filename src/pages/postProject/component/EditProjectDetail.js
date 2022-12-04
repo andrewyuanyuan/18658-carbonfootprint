@@ -1,6 +1,8 @@
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 import { useState } from 'react';
@@ -58,14 +60,21 @@ function EditProjectDetail(props) {
         direction="column"
         flex
         rowGap='50px'
+        marginLeft='40px'
       >
         <Grid xs='auto'>
-          <Typography variant="h5" align='left'>
+          <Typography variant="h4">
             Project Title
+          </Typography>
+          <Typography>
+            Use words people would search for when looking for your project
           </Typography>
         </Grid>
 
-        <Grid container spacing={8}>
+        <Grid 
+          container 
+          spacing={8}
+        >
           <Grid item xs={12}>
             <TextField
               required
@@ -80,6 +89,7 @@ function EditProjectDetail(props) {
             <TextField 
               required 
               id='projectType'
+              label='Project Type'
               fullWidth 
               select
               value={projectType}
@@ -109,6 +119,7 @@ function EditProjectDetail(props) {
             <TextField 
               required 
               id='country' 
+              label='country'
               fullWidth 
               select
               value={country}
@@ -135,6 +146,14 @@ function EditProjectDetail(props) {
             />
           </Grid>
           <Grid item xs={12}>
+            <Typography variant='h4'>
+              Project Image
+            </Typography>
+            <Card sx={{ maxWidth: 345}}>
+              <CardMedia component='img' image={props.image} />
+            </Card>
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               required
               id='description'
@@ -149,10 +168,22 @@ function EditProjectDetail(props) {
         </Grid>
 
         
-
         <Grid>
-          <Button onClick={onSubmit}>Save</Button>
-          <Button>Cancel</Button>
+          <Button
+            component='a'
+            sx={{ mt: 6, mb: 3, mr: 4}}
+            variant='contained'
+            onClick={onSubmit}
+          >
+            Save
+          </Button>
+          <Button
+            component='a'
+            sx={{ mt: 6, mb: 3}}
+            variant='contained'
+          >
+            Cancel
+          </Button>
         </Grid>
       </Grid>
     </>
