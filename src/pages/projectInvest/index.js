@@ -40,9 +40,26 @@ function ProjectInvest() {
     let set_to = parseFloat(all_project[category][id].donationReceived) + parseFloat(message);
     all_project[category][id].donationReceived = set_to;
     localStorage.setItem('projects', JSON.stringify(all_project));
-    console.log(JSON.parse(localStorage.getItem('projects'))[category][id].donationReceived);
+    let users = JSON.parse(localStorage.getItem('users'));
+    let transactions = users["chrisjohnson"].transactions;
+    let name_check = category + '/' + id
+    let exisit_check = false;
+    for(let i =0; i < transactions.length; i++)
+    {
+      if(transactions[i].name.localeCompare(name_check) === 0) {
+        let set_amount = parseFloat(users["chrisjohnson"].transactions[i].amount) + parseFloat(message);
+        users["chrisjohnson"].transactions[i].amount = set_amount
+        localStorage.setItem('users', JSON.stringify(users));
+        exisit_check = true;
+      }
+    }
+    if(exisit_check === false) {
+      console.log("NOT EXIST")
+      let set_amount = parseFloat(message);
+      users["chrisjohnson"].transactions.push({"name":name_check, "amount":message});
+      localStorage.setItem('users', JSON.stringify(users));
+    }
     setSnackOpen(true);
-    // setOpen(false);
   };
 
   const amountConversion = (event) => {
