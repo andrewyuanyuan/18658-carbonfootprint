@@ -49,7 +49,7 @@ const AccountPopover = (props) => {
         <Typography>
           {roleMap[localStorage.getItem('currentrole')] + ': ' + localStorage.getItem('currentuser')}
         </Typography>
-        <Typography>Switch Your Role:</Typography>
+        <Typography>Switch Account</Typography>
         <ColorToggleButton></ColorToggleButton>
       </Box>
 
