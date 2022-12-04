@@ -12,9 +12,9 @@ function PostProject() {
   if (category === undefined) {
     props = {
       name: '',
-      type: '',
+      type: 'ocean',
       pricing: '',
-      country: '',
+      country: 'Afghanistan',
       city: '',
       image: '/static/images/projects/ocean/WhaleDefender.png',
       description: '',
