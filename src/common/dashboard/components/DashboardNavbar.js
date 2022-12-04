@@ -17,14 +17,6 @@ const DashboardNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
   const settingsRef = useRef(null);
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
-  const [loginStatus, setloginStatus] = useState(false);
-
-  useEffect(() => {
-    const username = localStorage.getItem('username');
-    if (username) {
-      setloginStatus(true);
-    }
-  }, []);
 
   return (
     <>
@@ -97,32 +89,28 @@ const DashboardNavbar = (props) => {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          {loginStatus ? (
-            <>
-              <Tooltip title="Notifications">
-                <IconButton sx={{ ml: 1 }}>
-                  <Badge badgeContent={4} color="primary" variant="dot">
-                    <BellIcon fontSize="small" />
-                  </Badge>
-                </IconButton>
-              </Tooltip>
-              <Avatar
-                onClick={() => setOpenAccountPopover(true)}
-                ref={settingsRef}
-                sx={{
-                  cursor: 'pointer',
-                  height: 40,
-                  width: 40,
-                  ml: 1,
-                }}
-                src="/static/images/avatars/avatar_13.png"
-              >
-                <UserCircleIcon fontSize="small" />
-              </Avatar>
-            </>
-          ) : (
-            <></>
-          )}
+          <>
+            <Tooltip title="Notifications">
+              <IconButton sx={{ ml: 1 }}>
+                <Badge badgeContent={4} color="primary" variant="dot">
+                  <BellIcon fontSize="small" />
+                </Badge>
+              </IconButton>
+            </Tooltip>
+            <Avatar
+              onClick={() => setOpenAccountPopover(true)}
+              ref={settingsRef}
+              sx={{
+                cursor: 'pointer',
+                height: 40,
+                width: 40,
+                ml: 1,
+              }}
+              src="/static/images/avatars/avatar_13.png"
+            >
+              <UserCircleIcon fontSize="small" />
+            </Avatar>
+          </>
         </Toolbar>
       </DashboardNavbarRoot>
       <AccountPopover
