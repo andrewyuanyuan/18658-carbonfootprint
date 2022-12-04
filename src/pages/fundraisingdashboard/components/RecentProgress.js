@@ -51,6 +51,10 @@ const RecentProgress = (props) => {
     setProjects(curUserProject);
   }, []);
 
+  const handleProgress = (progress) => {
+    return progress > 100 ? 100 : progress
+  }
+
   return (
     <Card {...props}>
       <CardHeader subtitle={`${projects.length} in total`} title="Recent Progress of Your Projects" />
@@ -76,10 +80,10 @@ const RecentProgress = (props) => {
             <Grid item xs={9} pr={2}>
               <BorderLinearProgress
                 variant="determinate"
-                value={Math.floor((product.donationReceived / product.donationGoal) * 100)}
+                value={handleProgress(Math.floor((product.donationReceived / product.donationGoal) * 100))}
               />
               <Typography color="textPrimary">
-                {`${Math.floor((product.donationReceived / product.donationGoal) * 100)}% Completed ( $${
+                {`${handleProgress(Math.floor((product.donationReceived / product.donationGoal) * 100))}% Completed ( $${
                   product.donationReceived
                 } / $${product.donationGoal} )`}
               </Typography>
