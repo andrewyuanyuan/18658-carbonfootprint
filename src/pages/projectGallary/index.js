@@ -9,7 +9,7 @@ import ImageSlider from './ImageSlider';
 
 function ProjectGallary() {
   const slides = [
-    { url: '/static/images/projects/proj_gal_topimgtxt.png', title: 'beach' },
+    { url: '/static/images/projects/proj_gal_topimgtxt.png', title: 'xinjiangFarm' },
     { url: '/static/images/projects/ocean/CleanOcean.png', title: 'oceanProtector' },
   ];
 
