@@ -14,7 +14,7 @@ function logout() {
 }
 
 const roleMap = {
-  provider: 'Project Provider',
+  owner: 'Project Owner',
   investor: 'Enterprise Investor',
 };
 
@@ -47,7 +47,7 @@ const AccountPopover = (props) => {
       >
         <Typography variant="overline">Account</Typography>
         <Typography>
-          {roleMap[localStorage.getItem('currentrole')] + ': ' + localStorage.getItem('username')}
+          {roleMap[localStorage.getItem('currentrole')] + ': ' + localStorage.getItem('currentuser')}
         </Typography>
         <Typography>Switch Your Role:</Typography>
         <ColorToggleButton></ColorToggleButton>

@@ -9,7 +9,10 @@ import Typography from '@mui/material/Typography';
 export default function ProjectCard(props) {
   console.log(props);
   let link = '/projects/' + props.category + '/' + props.id;
-  let description = props.description.substring(0, props.description.indexOf('.'));
+  let description = props.description.substring(
+    0,
+    props.description.includes('.') ? props.description.indexOf('.') : props.description.length,
+  );
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia component="img" height="140" image={props.image} />

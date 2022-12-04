@@ -15,7 +15,7 @@ const Logo = styled(() => (
       fontFamily: 'monospace',
       fontWeight: 700,
       letterSpacing: '.3rem',
-      color: 'primary',
+      color: '#50C96B',
       textDecoration: 'none',
     }}
   >

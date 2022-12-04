@@ -20,6 +20,7 @@ function MyProject() {
     let proj = projects[x[0]][x[1]];
     if (proj !== undefined) {
       proj['category'] = x[0];
+      proj['id'] = x[1];
       projectList.push(proj);
     }
   });
@@ -35,7 +36,7 @@ function MyProject() {
                 return (
                   <Grid item key={id} xs={3}>
                     <ProjectCard
-                      id={id}
+                      id={projectList[id]['id']}
                       name={projectList[id].name}
                       description={projectList[id].description}
                       image={projectList[id].image}

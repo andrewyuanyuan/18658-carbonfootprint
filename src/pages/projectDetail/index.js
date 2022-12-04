@@ -4,12 +4,17 @@ import { Box, Container, Grid, Typography, Button } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import MessageIcon from '@mui/icons-material/Message';
+import EditIcon from '@mui/icons-material/Edit';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { useParams } from 'react-router-dom';
 
 function ProjectDetail() {
   let { category, id } = useParams();
+  console.log(id);
   let projectDetail = JSON.parse(localStorage.getItem('projects'))[category][id];
+  const isInvestor = localStorage.getItem('currentrole') === 'investor';
+  const isMyProject =
+    projectDetail.owner !== null ? localStorage.getItem('currentuser') === projectDetail.owner : false;
 
   return (
     <HeaderLayout>
@@ -47,43 +52,68 @@ function ProjectDetail() {
           <Typography sx={{ mt: 3, mb: 3 }} variant="body1">
             {projectDetail.description}
           </Typography>
-          <Grid container spacing={3}>
-            <Grid item lg={4} md={6} xs={12}>
-              <Typography sx={{ mt: 6, mb: 3 }} variant="h5">
-                Have Questions?
-              </Typography>
+          {isInvestor && (
+            <Grid container spacing={3}>
+              <Grid item lg={4} md={6} xs={12}>
+                <Typography sx={{ mt: 6, mb: 3 }} variant="h5">
+                  Have Questions?
+                </Typography>
+              </Grid>
+              <Grid item lg={4} md={6} xs={12}>
+                <Button
+                  component="a"
+                  startIcon={<MessageIcon fontSize="medium" />}
+                  sx={{ mt: 6, mb: 3 }}
+                  variant="contained"
+                  href="/"
+                >
+                  Message the provider
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item lg={4} md={6} xs={12}>
-              <Button
-                component="a"
-                startIcon={<MessageIcon fontSize="medium" />}
-                sx={{ mt: 6, mb: 3 }}
-                variant="contained"
-                href="/"
-              >
-                Message the provider
-              </Button>
-            </Grid>
-          </Grid>
+          )}
 
-          <Grid container spacing={3}>
-            <Grid item lg={4} md={6} xs={12}>
-              <Typography sx={{ mt: 6, mb: 3 }} variant="h5">
-                Made up your mind?
-              </Typography>
+          {isInvestor && (
+            <Grid container spacing={3}>
+              <Grid item lg={4} md={6} xs={12}>
+                <Typography sx={{ mt: 6, mb: 3 }} variant="h5">
+                  Made up your mind?
+                </Typography>
+              </Grid>
+              <Grid item lg={4} md={6} xs={12}>
+                <Button
+                  component="a"
+                  startIcon={<CurrencyExchangeIcon fontSize="medium" />}
+                  sx={{ mt: 6, mb: 3 }}
+                  variant="contained"
+                  href={'/projects/investment/' + category + '/' + id}
+                >
+                  Make Investment
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item lg={4} md={6} xs={12}>
-              <Button
-                component="a"
-                startIcon={<CurrencyExchangeIcon fontSize="medium" />}
-                sx={{ mt: 6, mb: 3 }}
-                variant="contained"
-                href={'/projects/investment/' + category + '/' + id}
-              >
-                Make Investment
-              </Button>
+          )}
+
+          {!isInvestor && isMyProject && (
+            <Grid container spacing={3}>
+              <Grid item lg={4} md={6} xs={12}>
+                <Typography sx={{ mt: 6, mb: 3 }} variant="h5">
+                  Edit your project
+                </Typography>
+              </Grid>
+              <Grid item lg={4} md={6} xs={12}>
+                <Button
+                  component="a"
+                  startIcon={<EditIcon fontSize="medium" />}
+                  sx={{ mt: 6, mb: 3 }}
+                  variant="contained"
+                  href={'/postProject/' + category + '/' + id}
+                >
+                  Edit
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
+          )}
         </Container>
       </Box>
     </HeaderLayout>

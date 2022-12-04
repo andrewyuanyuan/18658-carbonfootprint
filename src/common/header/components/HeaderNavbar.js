@@ -62,7 +62,17 @@ const HeaderNavbar = (props) => {
             </Box>
           )}
 
-          {localStorage.getItem('currentrole') === 'provider' ? (
+          {localStorage.getItem('currentrole') === 'owner' ? (
+            <Box sx={{ m: 1 }}>
+              <Button href="\postProject" color="primary" variant="text">
+                Post Project
+              </Button>
+            </Box>
+          ) : (
+            <></>
+          )}
+
+          {localStorage.getItem('currentrole') === 'owner' ? (
             <Box sx={{ m: 1 }}>
               <Button href="\myProjects" color="primary" variant="text">
                 My Projects
