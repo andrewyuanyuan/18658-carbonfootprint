@@ -68,7 +68,7 @@ const ImageSlider = ({ slides }) => {
   };
 
   let navigate = useNavigate();
-  const projPath = [`\projects/renewable/xinjiangwindfarm`, `\projects/ocean/cleanocean`];
+  const projPath = [`\projects/renewable/asahanhydroelectric`, `\projects/ocean/cleanocean`];
 
   return (
     <div style={sliderStyles}>
