@@ -8,6 +8,8 @@ var users = {
       {
         name: 'ocean/cleanocean',
         amount: 3000,
+        date: '9/20/2021'
+
       },
     ],
   },
@@ -17,6 +19,13 @@ var users = {
     avatar: '/static/images/avatar/avatar_14.png',
     notification: false,
     projects: ['ocean/cleanocean', 'ocean/cleanocean1'],
+    transactions: [
+      {
+        name: 'ocean/cleanocean',
+        amount: 3000,
+        date: '9/20/2021'
+      },
+    ],
   },
 };
 

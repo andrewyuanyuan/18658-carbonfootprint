@@ -18,14 +18,26 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 
+function containsNumbers(str) {
+  return /\d/.test(str);
+}
 function ProjectInvest() {
   let { category, id } = useParams();
   let projectDetail = JSON.parse(localStorage.getItem('projects'))[category][id];
   const [open, setOpen] = React.useState(false);
   const [snackOpen, setSnackOpen] = React.useState(false);
   const [message, setMessage] = React.useState('');
-  const handleClickOpen = () => {
-    setOpen(true);
+  const [uinput, setUinput] = React.useState('');
+  const handleClickOpen = (message) => {
+    // if (!isInteger(message))
+    let test = parseFloat(message)
+    console.log(uinput - parseFloat(uinput))
+    if(isNaN(uinput - parseFloat(uinput))){
+      alert("Please enter a valid number")
+    }
+    else {
+      setOpen(true);
+    }
   };
 
   const handleClose = () => {
@@ -44,21 +56,11 @@ function ProjectInvest() {
     let transactions = users["chrisjohnson"].transactions;
     let name_check = category + '/' + id
     let exisit_check = false;
-    for(let i =0; i < transactions.length; i++)
-    {
-      if(transactions[i].name.localeCompare(name_check) === 0) {
-        let set_amount = parseFloat(users["chrisjohnson"].transactions[i].amount) + parseFloat(message);
-        users["chrisjohnson"].transactions[i].amount = set_amount
-        localStorage.setItem('users', JSON.stringify(users));
-        exisit_check = true;
-      }
-    }
-    if(exisit_check === false) {
-      console.log("NOT EXIST")
-      let set_amount = parseFloat(message);
-      users["chrisjohnson"].transactions.push({"name":name_check, "amount":message});
-      localStorage.setItem('users', JSON.stringify(users));
-    }
+    let set_amount = parseFloat(message);
+    let current = new Date();
+    users["chrisjohnson"].transactions.push({'name':name_check,'amount':message, 'date': current.toLocaleDateString()});
+    users["abbysmith"].transactions.push({'name':name_check,'amount':message, 'date': current.toLocaleDateString()});
+    localStorage.setItem('users', JSON.stringify(users));
     setSnackOpen(true);
   };
 
@@ -66,8 +68,12 @@ function ProjectInvest() {
     let price = projectDetail.pricing;
     let result = price.slice(1);
     let target_amount = parseFloat(event.target.value);
+    setUinput(event.target.value);
     result = parseFloat(result.slice(0, -6));
     let final_price = target_amount * result;
+    if (isNaN(event.target.value - parseFloat(event.target.value))) {
+      final_price = 0;
+    }
     if (isNaN(final_price)) {
       final_price = 0;
     }
@@ -112,7 +118,7 @@ function ProjectInvest() {
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
               <Button
-                onClick={handleClickOpen}
+                onClick={() => handleClickOpen(message)}
                 component="a"
                 startIcon={<CurrencyExchangeIcon fontSize="medium" />}
                 sx={{ mt: 6, mb: 3 }}
