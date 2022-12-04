@@ -21,7 +21,7 @@ const projects = {
       contact: 'Abby Smith',
       description: 'The Ocean Cleanup, a non-profit organization, is developing and scaling technologies to rid the world’s oceans of plastic. Our aim is to put ourselves out of business once the oceans are clean.',
       image: '/static/images/projects/ocean/CleanOcean.png',
-      donationReceived: 15642,
+      donationReceived: 3000,
       donationGoal: 100000,
       owner: "abbysmith",
     },

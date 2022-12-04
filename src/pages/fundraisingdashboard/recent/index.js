@@ -19,6 +19,12 @@ function FundrasingRecent() {
       >
         <Container maxWidth={false}>
           <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <RecentProgress sx={{ height: '100%' }} />
+            </Grid>
+            <Grid item xs={12}>
+              <BankActivity />
+            </Grid>
             <Grid item lg={6} sm={6} xl={3} xs={12}>
               <SaleChange />
             </Grid>
@@ -27,12 +33,6 @@ function FundrasingRecent() {
             </Grid>
             <Grid item xs={12}>
               <Sales />
-            </Grid>
-            <Grid item xs={12}>
-              <RecentProgress sx={{ height: '100%' }} />
-            </Grid>
-            <Grid item xs={12}>
-              <BankActivity />
             </Grid>
           </Grid>
         </Container>
