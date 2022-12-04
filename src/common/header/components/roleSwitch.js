@@ -16,8 +16,8 @@ export default function ColorToggleButton() {
 
   return (
     <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange} aria-label="Platform">
-      <ToggleButton value="investor">Industrial Investor</ToggleButton>
-      <ToggleButton value="owner">Project Provider</ToggleButton>
+      <ToggleButton value="investor">Chris Johnson (Industrial Investor)</ToggleButton>
+      <ToggleButton value="owner">Abby Smith (Project Owner)</ToggleButton>
     </ToggleButtonGroup>
   );
 }
