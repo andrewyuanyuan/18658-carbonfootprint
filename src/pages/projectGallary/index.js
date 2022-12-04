@@ -7,21 +7,23 @@ import MainSlider from './MainSlider';
 
 function ProjectGallary() {
   const slides = [
-    { 
-      imgPath: '/static/images/projects/renewable/AsahanHydroelectric.png', 
+    {
+      imgPath: '/static/images/projects/renewable/AsahanHydroelectric.png',
       label: 'AsahanHydroElectric',
-      description : 'Asahan 1 Hydroelectric Power Plant 2 x 90 MW Project, developed by PT Bajradaya Sentranusa, is a runof-river hydroelectric power project in North Sumatera Province in Indonesia.',
-      title: "Asahan Hydroelectric Power Plant",
-      category: "renewable",
-      id: "asahanhydroelectric"
+      description:
+        'Asahan 1 Hydroelectric Power Plant 2 x 90 MW Project, developed by PT Bajradaya Sentranusa, is a runof-river hydroelectric power project in North Sumatera Province in Indonesia.',
+      title: 'Asahan Hydroelectric Power Plant',
+      category: 'renewable',
+      id: 'asahanhydroelectric',
     },
-    { 
-      imgPath: '/static/images/projects/ocean/CleanOcean.png', 
+    {
+      imgPath: '/static/images/projects/ocean/CleanOcean.png',
       label: 'CleanOcean',
-      description : 'The Ocean Cleanup, a non-profit organization, is developing and scaling technologies to rid the world’s oceans of plastic. Our aim is to put ourselves out of business once the oceans are clean.',
-      title: "Clean Ocean Group",
-      category: "ocean",
-      id: "cleanocean"
+      description:
+        'The Ocean Cleanup, a non-profit organization, is developing and scaling technologies to rid the world’s oceans of plastic. Our aim is to put ourselves out of business once the oceans are clean.',
+      title: 'Clean Ocean Group',
+      category: 'ocean',
+      id: 'cleanocean',
     },
   ];
 
@@ -35,24 +37,24 @@ function ProjectGallary() {
       description: 'support renewable energy',
     },
   ];
-  
+
   return (
     <HeaderLayout>
       <Container maxWidth="lg">
-          <Typography sx={{mt: 2, mb: 2}} variant="h5" color="black">
-            Highlight of the day
-          </Typography>
-          <MainSlider slides={slides} />
-          <Typography sx={{mt: 2, mb: 2}} variant="h5" color="black">
-            Explore Category
-          </Typography>
-          <Grid container spacing={2}>
-            {categories.map((post) => (
-              <Grid item xs={4}>
-                <FeaturedPost key={post.title} post={post} />
-              </Grid>
-            ))}
-          </Grid>
+        <Typography sx={{ mt: 2, mb: 2 }} variant="h5" color="black">
+          Highlight of the day
+        </Typography>
+        <MainSlider slides={slides} />
+        <Typography sx={{ mt: 2, mb: 2 }} variant="h5" color="black">
+          Explore Category
+        </Typography>
+        <Grid container spacing={2}>
+          {categories.map((post) => (
+            <Grid item xs={4}>
+              <FeaturedPost key={post.title} post={post} />
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     </HeaderLayout>
   );

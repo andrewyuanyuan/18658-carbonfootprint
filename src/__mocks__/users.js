@@ -22,7 +22,7 @@ var users = {
     role: 'provider',
     avatar: '/static/images/avatar/avatar_14.png',
     notification: false,
-    projects: ['ocean/cleanocean', 'ocean/cleanocean1'],
+    projects: ['ocean/cleanocean'],
     transactions: [
       {
         id: '809f7636-a8ae-4e84-bd5d-8b6805e17da2',
