@@ -65,7 +65,7 @@ function ProjectDetail() {
                   variant="contained"
                   href="/"
                 >
-                  Message the provider
+                  Message the owner
                 </Button>
               </Grid>
             </Grid>

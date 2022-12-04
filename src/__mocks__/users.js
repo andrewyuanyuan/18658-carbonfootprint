@@ -19,7 +19,7 @@ var users = {
   },
   abbysmith: {
     name: 'Abby Smith',
-    role: 'provider',
+    role: 'owner',
     avatar: '/static/images/avatar/avatar_14.png',
     notification: false,
     projects: ['ocean/cleanocean', 'ocean/plasticbank', 'ocean/whaledefender'],
