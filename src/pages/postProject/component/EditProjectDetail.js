@@ -51,7 +51,7 @@ function EditProjectDetail(props) {
       image: props.image,
       description: description,
       owner: localStorage.getItem('currentuser'),
-      contact: JSON.parse(localStorage.getItem('users'))[localStorage.getItem('currentuser')]['name']
+      contact: JSON.parse(localStorage.getItem('users'))[localStorage.getItem('currentuser')]['name'],
     };
     data[projectType][getProjectId(name)] = jsonData;
     localStorage.setItem('projects', JSON.stringify(data));

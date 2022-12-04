@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import HeaderLayout from '../../common/header';
 import EditProjectDetail from './component/EditProjectDetail';
 
-
 function PostProject() {
   const { category, id } = useParams();
   let props = {};
@@ -17,8 +16,8 @@ function PostProject() {
       country: '',
       city: '',
       image: '/static/images/projects/ocean/WhaleDefender.png',
-      description: ''
-    }
+      description: '',
+    };
   } else {
     const currProject = JSON.parse(localStorage.getItem('projects'))[category][id];
     console.log(currProject);
@@ -29,15 +28,15 @@ function PostProject() {
       country: currProject.country,
       city: currProject.city,
       image: currProject.image,
-      description: currProject.description
-    }
+      description: currProject.description,
+    };
   }
 
   return (
-    <Box component='main' sx={{ flexGrow: 1, py: 8, m: 4}}>
+    <Box component="main" sx={{ flexGrow: 1, py: 8, m: 4 }}>
       <HeaderLayout>
         <Grid container xs={12}>
-          <EditProjectDetail 
+          <EditProjectDetail
             name={props.name}
             type={props.type}
             pricing={props.pricing}

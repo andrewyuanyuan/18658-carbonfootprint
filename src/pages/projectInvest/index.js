@@ -27,12 +27,11 @@ function ProjectInvest() {
   const [uinput, setUinput] = React.useState('');
   const handleClickOpen = (message) => {
     // if (!isInteger(message))
-    let test = parseFloat(message)
-    console.log(uinput - parseFloat(uinput))
-    if(isNaN(uinput - parseFloat(uinput))){
-      alert("Please enter a valid number")
-    }
-    else {
+    let test = parseFloat(message);
+    console.log(uinput - parseFloat(uinput));
+    if (isNaN(uinput - parseFloat(uinput))) {
+      alert('Please enter a valid number');
+    } else {
       setOpen(true);
     }
   };
@@ -50,18 +49,25 @@ function ProjectInvest() {
     all_project[category][id].donationReceived = set_to;
     localStorage.setItem('projects', JSON.stringify(all_project));
     let users = JSON.parse(localStorage.getItem('users'));
-    let transactions = users["chrisjohnson"].transactions;
-    let name_check = category + '/' + id
+    let transactions = users['chrisjohnson'].transactions;
+    let name_check = category + '/' + id;
     let exisit_check = false;
     let set_amount = parseFloat(message);
     let current = new Date();
-    users["chrisjohnson"].transactions.push({'name':name_check,'amount':message, 'date': current.toLocaleDateString(),
-    'time': current.toLocaleTimeString()});
-    for(let i =0; i < users["abbysmith"].projects.length; i++)
-    {
-      if(users["abbysmith"].projects[i].localeCompare(name_check) === 0) {
-        users["abbysmith"].transactions.push({'name':name_check,'amount':message, 'date': current.toLocaleDateString(),
-          'time' : current.toLocaleTimeString()});
+    users['chrisjohnson'].transactions.push({
+      name: name_check,
+      amount: message,
+      date: current.toLocaleDateString(),
+      time: current.toLocaleTimeString(),
+    });
+    for (let i = 0; i < users['abbysmith'].projects.length; i++) {
+      if (users['abbysmith'].projects[i].localeCompare(name_check) === 0) {
+        users['abbysmith'].transactions.push({
+          name: name_check,
+          amount: message,
+          date: current.toLocaleDateString(),
+          time: current.toLocaleTimeString(),
+        });
       }
     }
     localStorage.setItem('users', JSON.stringify(users));
