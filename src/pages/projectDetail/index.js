@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom';
 
 function ProjectDetail() {
   let { category, id } = useParams();
-  console.log(id);
   let projectDetail = JSON.parse(localStorage.getItem('projects'))[category][id];
   const isInvestor = localStorage.getItem('currentrole') === 'investor';
   const isMyProject = localStorage.getItem('currentuser') === projectDetail.owner;
