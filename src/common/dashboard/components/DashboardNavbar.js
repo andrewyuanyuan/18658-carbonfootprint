@@ -106,7 +106,7 @@ const DashboardNavbar = (props) => {
                 width: 40,
                 ml: 1,
               }}
-              src="/static/images/avatars/avatar_13.png"
+              src={"/static/images/avatars/"+localStorage.getItem("currentuser")+".png"}
             >
               <UserCircleIcon fontSize="small" />
             </Avatar>
