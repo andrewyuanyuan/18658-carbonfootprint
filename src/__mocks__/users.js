@@ -8,6 +8,9 @@ var users = {
       {
         name: 'ocean/cleanocean',
         amount: 3000,
+        date: '9/20/2021',
+        time: '2:42:07 PM'
+
       },
     ],
   },
@@ -21,6 +24,8 @@ var users = {
       {
         name: 'ocean/cleanocean',
         amount: 3000,
+        date: '9/20/2021',
+        time: '2:42:07 PM'
       },
     ],
   },
