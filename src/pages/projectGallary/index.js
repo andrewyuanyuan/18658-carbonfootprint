@@ -1,50 +1,37 @@
 import React from 'react';
 import HeaderLayout from '../../common/header';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import { Link } from 'react-router-dom';
-import { Button } from '@mui/material';
-import { Container } from '@mui/material';
+import { Container, Grid } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import FeaturedPost from './FeaturePost';
 import ImageSlider from './ImageSlider';
 
 function ProjectGallary() {
   const slides = [
-    { url: '/static/images/projects/proj_gal_topimgtxt.png', title: 'xinjiangFarm' },
-    { url: '/static/images/projects/ocean/CleanOcean.png', title: 'oceanProtector' },
+    { url: '/static/images/projects/renewable/AsahanHydroelectric.png', title: 'AsahanHydroElectric' },
+    { url: '/static/images/projects/ocean/CleanOcean.png', title: 'CleanOcean' },
   ];
 
-  const containerStyles = {
-    width: '500px',
-    height: '280px',
-    margin: '0 auto',
-  };
+  const categories = [
+    { image: '/static/images/projects/ocean.png', id: "ocean", title: 'Ocean', description: "invest in ocean health" },
+    { image: '/static/images/projects/forest.png', id: "forest", title: 'Forest' , description: "fight deforestation"},
+    { image: '/static/images/projects/renewable.png', id: "renewable", title: 'Renewable', description: "support renewable energy" },
+  ];
 
   return (
     <HeaderLayout>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          p: 1,
-          m: 1,
-        }}
-      >
-        {' '}
-        <Container maxWidth="lg">
+      <Container maxWidth="lg">
           <ImageSlider style={{ width: '100%' }} slides={slides} />
-          <Button href="\projects/forest" style={{ width: '33.33%' }}>
-            <img src="/static/images/projects/proj_gal_img1.png" alt="forest" style={{ width: '100%' }} />
-          </Button>
-
-          <Button href="\projects/ocean" style={{ width: '33.33%' }}>
-            <img src="/static/images/projects/proj_gal_oceanimg.png" alt="ocean" style={{ width: '100%' }} />
-          </Button>
-
-          <Button href="\projects/renewable" style={{ width: '33.33%' }}>
-            <img src="/static/images/projects/proj_gal_img3.png" alt="other" style={{ width: '100%' }} />
-          </Button>
-        </Container>
-      </Box>
+          <Typography variant="h5" color="black">
+            Explore Category
+          </Typography>
+          <Grid container spacing={2}>
+            {categories.map((post) => (
+              <Grid item xs={4}>
+                <FeaturedPost key={post.title} post={post} />
+              </Grid>
+            ))}
+          </Grid>
+      </Container>
     </HeaderLayout>
   );
 }

@@ -17,6 +17,12 @@ var users = {
     avatar: '/static/images/avatar/avatar_14.png',
     notification: false,
     projects: ['ocean/cleanocean', 'ocean/cleanocean1'],
+    transactions: [
+      {
+        name: 'ocean/cleanocean',
+        amount: 3000,
+      },
+    ],
   },
 };
 
