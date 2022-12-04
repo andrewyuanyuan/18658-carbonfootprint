@@ -54,40 +54,40 @@ function MainSlider(props) {
                   backgroundImage: `url(${step.imgPath})`,
                 }}
               >
-              {<img style={{ display: 'none' }} src={step.imgPath} alt={step.label} />}
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  bottom: 0,
-                  right: 0,
-                  left: 0,
-                  backgroundColor: 'rgba(0,0,0,.3)',
-                }}
-              />
-              <Grid container>
-                <Grid item md={7}>
-                  <Box
-                    sx={{
-                      position: 'relative',
-                      p: { xs: 4, md: 6 },
-                      pr: { md: 0 },
-                      mt: 10,
-                      mb: 10
-                    }}
-                  >
-                    <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                      {step.title}
-                    </Typography>
-                    <Typography variant="h5" color="inherit" paragraph>
-                      {step.description}
-                    </Typography>
-                    <Link variant="h6" color="inherit" href={"/projects/" + step.category + "/" + step.id}>
-                      Learn More...
-                    </Link>
-                  </Box>
+                {<img style={{ display: 'none' }} src={step.imgPath} alt={step.label} />}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: 0,
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                    backgroundColor: 'rgba(0,0,0,.3)',
+                  }}
+                />
+                <Grid container>
+                  <Grid item md={7}>
+                    <Box
+                      sx={{
+                        position: 'relative',
+                        p: { xs: 4, md: 6 },
+                        pr: { md: 0 },
+                        mt: 10,
+                        mb: 10,
+                      }}
+                    >
+                      <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+                        {step.title}
+                      </Typography>
+                      <Typography variant="h5" color="inherit" paragraph>
+                        {step.description}
+                      </Typography>
+                      <Link variant="h6" color="inherit" href={'/projects/' + step.category + '/' + step.id}>
+                        Learn More...
+                      </Link>
+                    </Box>
+                  </Grid>
                 </Grid>
-              </Grid>
               </Paper>
             ) : null}
           </div>
@@ -98,26 +98,14 @@ function MainSlider(props) {
         position="static"
         activeStep={activeStep}
         nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
+          <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
             Next
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
+            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
           </Button>
         }
         backButton={
           <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
+            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
             Back
           </Button>
         }

@@ -8,8 +8,8 @@ import CardMedia from '@mui/material/CardMedia';
 
 function FeaturedPost(props) {
   const { post } = props;
-  const link = "/projects/" + post.id;
-  console.log(link)
+  const link = '/projects/' + post.id;
+  console.log(link);
 
   return (
     <CardActionArea component="a" href={link}>
@@ -25,11 +25,7 @@ function FeaturedPost(props) {
             Learn More...
           </Typography>
         </CardContent>
-        <CardMedia
-          component="img"
-          sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
-          image={post.image}
-        />
+        <CardMedia component="img" sx={{ width: 160, display: { xs: 'none', sm: 'block' } }} image={post.image} />
       </Card>
     </CardActionArea>
   );
