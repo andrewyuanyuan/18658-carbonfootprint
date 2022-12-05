@@ -12,10 +12,27 @@ const HeaderNavbarRoot = styled(AppBar)(({ theme }) => ({
   boxShadow: theme.shadows[3],
 }));
 
+function convert_flag() {
+  let curUser = localStorage.getItem('currentuser');
+  let cur = JSON.parse(localStorage.getItem('users'));
+  cur[curUser]['notification'] = !cur[curUser]['notification'];
+  localStorage.setItem('users', JSON.stringify(cur));
+}
+
 const HeaderNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
   const settingsRef = useRef(null);
-  const [openAccountPopover, setOpenAccountPopover] = useState(false);
+  var read = false;
+  let curUser = localStorage.getItem('currentuser');
+
+  if (curUser === 'chrisjohnson') {
+    read = JSON.parse(localStorage.getItem('users'))['chrisjohnson']['notification'];
+  } else {
+    read = JSON.parse(localStorage.getItem('users'))['abbysmith']['notification'];
+  }
+  const [openAccountPopover, setOpenAccountPopover] = useState(read);
+
+  const [activeNotification, switchNotification] = useState(false);
 
   return (
     <>
@@ -74,13 +91,36 @@ const HeaderNavbar = (props) => {
             <></>
           )}
 
+          <Box sx={{ m: 1 }}>
+            <Button
+              color="primary"
+              variant="text"
+              onClick={() => {
+                let cur = JSON.parse(localStorage.getItem('users'));
+                cur[localStorage.getItem('currentuser')]['notification'] = false;
+                localStorage.setItem('users', JSON.stringify(cur));
+                window.location.href = 'Chat';
+              }}
+            >
+              Chat
+            </Button>
+          </Box>
+
           <Box sx={{ flexGrow: 1 }} />
 
           <>
             <Tooltip title="Notifications">
               <IconButton sx={{ ml: 1 }}>
-                <Badge badgeContent={4} color="primary" variant="dot">
-                  <BellIcon fontSize="small" />
+                <Badge badgeContent={activeNotification ? 1 : 0} color="primary" variant="dot">
+                  <BellIcon
+                    fontSize="small"
+                    onClick={() => {
+                      if (activeNotification) {
+                        convert_flag();
+                      }
+                      window.location.href = 'Chat';
+                    }}
+                  />
                 </Badge>
               </IconButton>
             </Tooltip>
@@ -93,7 +133,7 @@ const HeaderNavbar = (props) => {
                 width: 40,
                 ml: 1,
               }}
-              src={"/static/images/avatars/"+localStorage.getItem("currentuser")+".png"}
+              src={'/static/images/avatars/' + localStorage.getItem('currentuser') + '.png'}
             >
               <UserCircleIcon fontSize="small" />
             </Avatar>
