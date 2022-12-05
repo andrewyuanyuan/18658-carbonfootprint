@@ -13,10 +13,20 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
   boxShadow: theme.shadows[3],
 }));
 
+function convert_flag() {
+  let curUser = localStorage.getItem('currentuser');
+  let cur = JSON.parse(localStorage.getItem('users'));
+  cur[curUser]['notification'] = !cur[curUser]['notification'];
+  localStorage.setItem('users', JSON.stringify(cur));
+}
+
 const DashboardNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
   const settingsRef = useRef(null);
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
+  const [activeNotification, switchNotification] = useState(
+    JSON.parse(localStorage.getItem('users'))[localStorage.getItem('currentuser')]['notification'],
+  );
 
   return (
     <>
@@ -107,8 +117,16 @@ const DashboardNavbar = (props) => {
           <>
             <Tooltip title="Notifications">
               <IconButton sx={{ ml: 1 }}>
-                <Badge badgeContent={4} color="primary" variant="dot">
-                  <BellIcon fontSize="small" />
+                <Badge badgeContent={activeNotification ? 1 : 0} color="primary" variant="dot">
+                  <BellIcon
+                    fontSize="small"
+                    onClick={() => {
+                      if (activeNotification) {
+                        convert_flag();
+                      }
+                      window.location.href = 'Chat';
+                    }}
+                  />
                 </Badge>
               </IconButton>
             </Tooltip>
@@ -121,7 +139,7 @@ const DashboardNavbar = (props) => {
                 width: 40,
                 ml: 1,
               }}
-              src={"/static/images/avatars/"+localStorage.getItem("currentuser")+".png"}
+              src={'/static/images/avatars/' + localStorage.getItem('currentuser') + '.png'}
             >
               <UserCircleIcon fontSize="small" />
             </Avatar>
