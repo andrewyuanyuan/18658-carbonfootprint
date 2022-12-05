@@ -80,11 +80,9 @@ const Chat = (props) => {
 
   return (
       <HeaderLayout>
-        <Grid container sx={{mt:5}} >
-            <Grid item xs={12} >
-                <Typography variant="h4" className="header-message" sx={{p: 5, m: 5}}>Chat Room</Typography>
-            </Grid>
-        </Grid>
+        <Typography variant="h4" sx={{ pb: 2, pl: 3 }}>
+            Chat Room
+        </Typography>
         <Grid container component={Paper} className={classes.chatSection}>
             <Grid item xs={3} className={classes.borderRight500}>
                 <List>
@@ -132,10 +130,11 @@ const Chat = (props) => {
                                     <Grid item xs={11}>
                                         <ListItemText 
                                             align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
-                                            primary = {chats["abbysmith,chrisjohnson"][index].message}>
-                                        </ListItemText>
-                                        <ListItemText align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
                                             primary = {chats["abbysmith,chrisjohnson"][index].time}>
+                                        </ListItemText>
+                                        <ListItemText 
+                                            align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
+                                            primary = {chats["abbysmith,chrisjohnson"][index].message}>
                                         </ListItemText>
                                     </Grid>
                                     {chats["abbysmith,chrisjohnson"][index].sender === currUser && 

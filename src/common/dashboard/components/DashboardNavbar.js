@@ -87,6 +87,21 @@ const DashboardNavbar = (props) => {
             <></>
           )}
 
+          <Box sx={{ m: 1 }}>
+            <Button
+              color="primary"
+              variant="text"
+              onClick={() => {
+                let cur = JSON.parse(localStorage.getItem('users'));
+                cur[localStorage.getItem('currentuser')]['notification'] = false;
+                localStorage.setItem('users', JSON.stringify(cur));
+                window.location.href = '/Chat';
+              }}
+            >
+              Chatroom
+            </Button>
+          </Box>
+
           <Box sx={{ flexGrow: 1 }} />
 
           <>
