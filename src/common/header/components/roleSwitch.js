@@ -6,6 +6,9 @@ export default function ColorToggleButton() {
   const [alignment, setAlignment] = React.useState(localStorage.getItem('currentrole'));
 
   const handleChange = (event, newAlignment) => {
+    if (newAlignment === null) {
+      return;
+    }
     setAlignment(newAlignment);
     const curUser = localStorage.getItem('currentuser');
     localStorage.setItem('currentrole', newAlignment);
