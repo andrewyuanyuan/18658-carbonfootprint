@@ -19,6 +19,7 @@ import FundrasingRecent from './pages/fundraisingdashboard/recent';
 import FundrasingProgres from './pages/fundraisingdashboard/progress';
 import FundrasingCustomization from './pages/fundraisingdashboard/customization';
 import FundrasingBackActivity from './pages/fundraisingdashboard/bankactivity';
+import MyProject from './pages/myProjects';
 
 import Test from './pages/test';
 import store from './store';
@@ -51,10 +52,12 @@ function Album() {
 
             <Route exact path="/login" element={<SignIn />} />
             <Route exact path="/test" element={<Test />} />
+            <Route exact path="/myProjects" element={<MyProject />} />
             <Route exact path="/projects/:category" element={<Projects />} />
             <Route exact path="/projects/:category/:id" element={<ProjectDetail />} />
             <Route exact path="/projects/investment/:category/:id" element={<ProjectInvest />} />
-            
+
+            <Route exact path="/postProject/:category/:id" element={<PostProject />} />
             <Route exact path="/postProject" element={<PostProject />} />
           </Routes>
         </BrowserRouter>

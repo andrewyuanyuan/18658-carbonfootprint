@@ -17,7 +17,6 @@ import HeaderLayout from '../../common/header';
 import { current } from '@reduxjs/toolkit';
 import { Button } from '@mui/material';
 import { useRef, useState, useEffect } from 'react';
-import chats from '../../__mocks__/chats';
 
 const useStyles = makeStyles({
   table: {
@@ -25,37 +24,30 @@ const useStyles = makeStyles({
   },
   chatSection: {
     width: '100%',
-    height: '80vh'
+    height: '80vh',
   },
   headBG: {
-      backgroundColor: '#e0e0e0'
+    backgroundColor: '#e0e0e0',
   },
   borderRight500: {
-      borderRight: '1px solid #e0e0e0'
+    borderRight: '1px solid #e0e0e0',
   },
   messageArea: {
     height: '70vh',
-    overflowY: 'auto'
-  }
+    overflowY: 'auto',
+  },
 });
 
 const currUser =  localStorage.getItem('currentuser')
-const username = JSON.parse(localStorage.getItem('users'))
-const chat = JSON.parse(localStorage.getItem('chats'))
-const chatsNow = JSON.parse(localStorage.getItem('chatsNow'))
-
-// if(currUser == 'chrisjohnson'){
-//     console.log(username.chrisjohnson.name)
-// }
-// console.log(chat["abbysmith,chrisjohnson"][0].message)
- //console.log(chat["abbysmith,chrisjohnson"])
- 
-// const [value, setValue] = useState('')
-
-// console.log(text)
-
+const username = JSON.parse(localStorage.getItem('users'))[currUser].name
+var chats = JSON.parse(localStorage.getItem('chats'))
 
 const Chat = (props) => {
+    var receiver = "abbysmith"
+    if (currUser === "abbysmith") {
+        receiver = "chrisjohnson";
+    }
+    const receiverUsername = JSON.parse(localStorage.getItem('users'))[receiver].name
     const [text, setText] = useState(" ")
     const handleChange = (event) => {
         setText({
@@ -65,31 +57,14 @@ const Chat = (props) => {
       };
 
     const onSubmit = () => {
-      //  let data = chatsNow["abbysmith,chrisjohnson"]
-
-    let jsonData =  [
-      {
-        sender: 'chrisjohnson',
-        receiver: 'abbysmith',
-        message: chatsNow[0].message,
-      },
-    ];
-
-    jsonData.push({
-        sender: 'chrisjohnson',
-        receiver: 'abbysmith',
-        message: text.message,
-    })
-
-    // chatsNow["abbysmith,chrisjohnson"] = jsonData
-    
-    //console.log(JSON.stringify(jsonData))
-    
-    localStorage.setItem('chatsNow', JSON.stringify(jsonData));
-    // window.location.reload();
-
-}
-
+        chats["abbysmith,chrisjohnson"].push({
+            sender: currUser,
+            receiver: receiver,
+            message: text.message,
+        })
+        localStorage.setItem('chats', JSON.stringify(chats));
+        window.location.reload();
+    }
 
   const classes = useStyles();
 
@@ -103,31 +78,21 @@ const Chat = (props) => {
         <Grid container component={Paper} className={classes.chatSection}>
             <Grid item xs={3} className={classes.borderRight500}>
                 <List>
-                    <ListItem button key="RemySharp">
+                    <ListItem button key={currUser}>
                         <ListItemIcon>
-                        <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
+                        <Avatar alt={currUser} src={"/static/images/avatars/"+currUser+".png"} />
                         </ListItemIcon>
-                        <ListItemText primary="Chris Johnson"></ListItemText>
+                        <ListItemText primary={username}></ListItemText>
                     </ListItem>
                 </List>
                 <Divider />
-                {/* <Grid item xs={12} style={{padding: '10px'}}>
-                    <TextField id="outlined-basic-email" label="Search" variant="outlined" fullWidth />
-                </Grid> */}
                 <Divider />
                 <List>
-                    <ListItem button key="RemySharp">
+                <ListItem button key={receiver}>
                         <ListItemIcon>
-                            <Avatar alt="Abby Smith" src="https://material-ui.com/static/images/avatar/3.jpg" />
+                        <Avatar alt={receiver} src={"/static/images/avatars/"+receiver+".png"} />
                         </ListItemIcon>
-                        <ListItemText primary="Abby Smith">Abby Smith</ListItemText>
-                        <ListItemText secondary="online" align="right"></ListItemText>
-                    </ListItem>
-                    <ListItem button key="CindyBaker">
-                        <ListItemIcon>
-                            <Avatar alt="Cindy Baker" src="https://material-ui.com/static/images/avatar/2.jpg" />
-                        </ListItemIcon>
-                        <ListItemText primary="Cindy Baker">Cindy Baker</ListItemText>
+                        <ListItemText primary={receiverUsername}></ListItemText>
                     </ListItem>
                 </List>
             </Grid>
@@ -136,57 +101,22 @@ const Chat = (props) => {
                     <ListItem key="1">
                         <Grid container>
                             <Grid item xs={12}>
-                            {Object.keys(chat["abbysmith,chrisjohnson"]).map((index) => {
-                            return (
-                             <ListItemText 
-                             align="left" 
-                             primary = {chat["abbysmith,chrisjohnson"][index].message}>
-                             </ListItemText>
-                                 );
-                               })} 
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ListItemText align="left" secondary="09:30"></ListItemText>
-                            </Grid>
-
-
-                            <Grid item xs={12}>
-                            {Object.keys(chatsNow).map((index) => {
-                            return (
-                             <ListItemText 
-                             align="right" 
-                             primary = {chatsNow[index].message}>
-                             </ListItemText>
-                                 );
-                               })} 
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" secondary="09:30"></ListItemText>
-                            </Grid>
-                            
-                        </Grid>
-                    </ListItem>
-
-                    {/* <ListItem key="2">
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <ListItemText align="left" primary="Hey, Iam Good! What about you ?"></ListItemText>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ListItemText align="left" secondary="09:31"></ListItemText>
+                            {Object.keys(chats["abbysmith,chrisjohnson"]).map((index) => {
+                                return (
+                                <>
+                                <ListItemText 
+                                    align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
+                                    primary = {chats["abbysmith,chrisjohnson"][index].message}>
+                                </ListItemText>
+                                <Grid item xs={12}>
+                                    <ListItemText align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} secondary="09:30"></ListItemText>
+                                </Grid>
+                                </>
+                            );
+                            })} 
                             </Grid>
                         </Grid>
                     </ListItem>
-                    <ListItem key="3">
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" primary="Cool. i am good, let's catch up!"></ListItemText>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" secondary="10:30"></ListItemText>
-                            </Grid>
-                        </Grid>
-                    </ListItem> */}
                 </List>
                 <Divider />
                 <Grid container style={{padding: '20px'}}>
@@ -196,15 +126,17 @@ const Chat = (props) => {
                     
                     <Grid xs={1} align="right">
                         <Button onClick={onSubmit}>
-                       {/* <Fab color="primary" aria-label="add"><SendIcon /></Fab> */}
                        Send
                        </Button>
                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-      </HeaderLayout>
+                <Grid item xs={12}>
+                  <ListItemText align="left" secondary="09:31"></ListItemText>
+                </Grid>
+              </Grid>
+    </HeaderLayout>
   );
-}
+};
 
 export default Chat;

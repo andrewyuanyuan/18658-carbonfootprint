@@ -17,14 +17,6 @@ const DashboardNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
   const settingsRef = useRef(null);
   const [openAccountPopover, setOpenAccountPopover] = useState(false);
-  const [loginStatus, setloginStatus] = useState(false);
-
-  useEffect(() => {
-    const username = localStorage.getItem('username');
-    if (username) {
-      setloginStatus(true);
-    }
-  }, []);
 
   return (
     <>
@@ -75,34 +67,50 @@ const DashboardNavbar = (props) => {
             </Box>
           )}
 
-          <Box sx={{ flexGrow: 1 }} />
-
-          {loginStatus ? (
-            <>
-              <Tooltip title="Notifications">
-                <IconButton sx={{ ml: 1 }}>
-                  <Badge badgeContent={4} color="primary" variant="dot">
-                    <BellIcon fontSize="small" />
-                  </Badge>
-                </IconButton>
-              </Tooltip>
-              <Avatar
-                onClick={() => setOpenAccountPopover(true)}
-                ref={settingsRef}
-                sx={{
-                  cursor: 'pointer',
-                  height: 40,
-                  width: 40,
-                  ml: 1,
-                }}
-                src="/static/images/avatars/avatar_13.png"
-              >
-                <UserCircleIcon fontSize="small" />
-              </Avatar>
-            </>
+          {localStorage.getItem('currentrole') === 'owner' ? (
+            <Box sx={{ m: 1 }}>
+              <Button href="\postProject" color="primary" variant="text">
+                Post Project
+              </Button>
+            </Box>
           ) : (
             <></>
           )}
+
+          {localStorage.getItem('currentrole') === 'owner' ? (
+            <Box sx={{ m: 1 }}>
+              <Button href="\myProjects" color="primary" variant="text">
+                My Projects
+              </Button>
+            </Box>
+          ) : (
+            <></>
+          )}
+
+          <Box sx={{ flexGrow: 1 }} />
+
+          <>
+            <Tooltip title="Notifications">
+              <IconButton sx={{ ml: 1 }}>
+                <Badge badgeContent={4} color="primary" variant="dot">
+                  <BellIcon fontSize="small" />
+                </Badge>
+              </IconButton>
+            </Tooltip>
+            <Avatar
+              onClick={() => setOpenAccountPopover(true)}
+              ref={settingsRef}
+              sx={{
+                cursor: 'pointer',
+                height: 40,
+                width: 40,
+                ml: 1,
+              }}
+              src={"/static/images/avatars/"+localStorage.getItem("currentuser")+".png"}
+            >
+              <UserCircleIcon fontSize="small" />
+            </Avatar>
+          </>
         </Toolbar>
       </DashboardNavbarRoot>
       <AccountPopover
