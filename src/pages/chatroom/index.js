@@ -13,6 +13,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
+import HeaderLayout from '../../common/header';
+import { current } from '@reduxjs/toolkit';
+import { Button } from '@mui/material';
+import { useRef, useState, useEffect } from 'react';
 
 const useStyles = makeStyles({
   table: {
@@ -34,102 +38,104 @@ const useStyles = makeStyles({
   },
 });
 
-const Chat = () => {
+const currUser =  localStorage.getItem('currentuser')
+const username = JSON.parse(localStorage.getItem('users'))[currUser].name
+var chats = JSON.parse(localStorage.getItem('chats'))
+
+const Chat = (props) => {
+    var receiver = "abbysmith"
+    if (currUser === "abbysmith") {
+        receiver = "chrisjohnson";
+    }
+    const receiverUsername = JSON.parse(localStorage.getItem('users'))[receiver].name
+    const [text, setText] = useState(" ")
+    const handleChange = (event) => {
+        setText({
+          ...text,
+          message: event.target.value,
+        });
+      };
+
+    const onSubmit = () => {
+        chats["abbysmith,chrisjohnson"].push({
+            sender: currUser,
+            receiver: receiver,
+            message: text.message,
+        })
+        localStorage.setItem('chats', JSON.stringify(chats));
+        window.location.reload();
+    }
+
   const classes = useStyles();
 
   return (
-    <div>
-      <Grid container>
-        <Grid item xs={12}>
-          <Typography variant="h5" className="header-message">
-            Chat
-          </Typography>
+      <HeaderLayout>
+        <Grid container>
+            <Grid item xs={12} >
+                <Typography variant="h4" className="header-message" sx={{p: 5, m: 5}}>Chat Room</Typography>
+            </Grid>
         </Grid>
-      </Grid>
-      <Grid container component={Paper} className={classes.chatSection}>
-        <Grid item xs={3} className={classes.borderRight500}>
-          <List>
-            <ListItem button key="RemySharp">
-              <ListItemIcon>
-                <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
-              </ListItemIcon>
-              <ListItemText primary="John Wick"></ListItemText>
-            </ListItem>
-          </List>
-          <Divider />
-          <Grid item xs={12} style={{ padding: '10px' }}>
-            <TextField id="outlined-basic-email" label="Search" variant="outlined" fullWidth />
-          </Grid>
-          <Divider />
-          <List>
-            <ListItem button key="RemySharp">
-              <ListItemIcon>
-                <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
-              </ListItemIcon>
-              <ListItemText primary="Remy Sharp">Remy Sharp</ListItemText>
-              <ListItemText secondary="online" align="right"></ListItemText>
-            </ListItem>
-            <ListItem button key="Alice">
-              <ListItemIcon>
-                <Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
-              </ListItemIcon>
-              <ListItemText primary="Alice">Alice</ListItemText>
-            </ListItem>
-            <ListItem button key="CindyBaker">
-              <ListItemIcon>
-                <Avatar alt="Cindy Baker" src="https://material-ui.com/static/images/avatar/2.jpg" />
-              </ListItemIcon>
-              <ListItemText primary="Cindy Baker">Cindy Baker</ListItemText>
-            </ListItem>
-          </List>
-        </Grid>
-        <Grid item xs={9}>
-          <List className={classes.messageArea}>
-            <ListItem key="1">
-              <Grid container>
-                <Grid item xs={12}>
-                  <ListItemText align="right" primary="Hey man, What's up ?"></ListItemText>
-                </Grid>
-                <Grid item xs={12}>
-                  <ListItemText align="right" secondary="09:30"></ListItemText>
-                </Grid>
-              </Grid>
-            </ListItem>
-            <ListItem key="2">
-              <Grid container>
-                <Grid item xs={12}>
-                  <ListItemText align="left" primary="Hey, Iam Good! What about you ?"></ListItemText>
+        <Grid container component={Paper} className={classes.chatSection}>
+            <Grid item xs={3} className={classes.borderRight500}>
+                <List>
+                    <ListItem button key={currUser}>
+                        <ListItemIcon>
+                        <Avatar alt={currUser} src={"/static/images/avatars/"+currUser+".png"} />
+                        </ListItemIcon>
+                        <ListItemText primary={username}></ListItemText>
+                    </ListItem>
+                </List>
+                <Divider />
+                <Divider />
+                <List>
+                <ListItem button key={receiver}>
+                        <ListItemIcon>
+                        <Avatar alt={receiver} src={"/static/images/avatars/"+receiver+".png"} />
+                        </ListItemIcon>
+                        <ListItemText primary={receiverUsername}></ListItemText>
+                    </ListItem>
+                </List>
+            </Grid>
+            <Grid item xs={9}>
+                <List className={classes.messageArea}>
+                    <ListItem key="1">
+                        <Grid container>
+                            <Grid item xs={12}>
+                            {Object.keys(chats["abbysmith,chrisjohnson"]).map((index) => {
+                                return (
+                                <>
+                                <ListItemText 
+                                    align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
+                                    primary = {chats["abbysmith,chrisjohnson"][index].message}>
+                                </ListItemText>
+                                <Grid item xs={12}>
+                                    <ListItemText align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} secondary="09:30"></ListItemText>
+                                </Grid>
+                                </>
+                            );
+                            })} 
+                            </Grid>
+                        </Grid>
+                    </ListItem>
+                </List>
+                <Divider />
+                <Grid container style={{padding: '20px'}}>
+                    <Grid item xs={11}>
+                        <TextField id="outlined-basic-email" onChange={handleChange} label="Type Something" fullWidth />
+                    </Grid>
+                    
+                    <Grid xs={1} align="right">
+                        <Button onClick={onSubmit}>
+                       Send
+                       </Button>
+                       </Grid>
+                    </Grid>
                 </Grid>
                 <Grid item xs={12}>
                   <ListItemText align="left" secondary="09:31"></ListItemText>
                 </Grid>
               </Grid>
-            </ListItem>
-            <ListItem key="3">
-              <Grid container>
-                <Grid item xs={12}>
-                  <ListItemText align="right" primary="Cool. i am good, let's catch up!"></ListItemText>
-                </Grid>
-                <Grid item xs={12}>
-                  <ListItemText align="right" secondary="10:30"></ListItemText>
-                </Grid>
-              </Grid>
-            </ListItem>
-          </List>
-          <Divider />
-          <Grid container style={{ padding: '20px' }}>
-            <Grid item xs={11}>
-              <TextField id="outlined-basic-email" label="Type Something" fullWidth />
-            </Grid>
-            <Grid xs={1} align="right">
-              <Fab color="primary" aria-label="add">
-                <SendIcon />
-              </Fab>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </div>
+    </HeaderLayout>
   );
 };
 

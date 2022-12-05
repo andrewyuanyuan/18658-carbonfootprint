@@ -5,6 +5,11 @@ const chats = {
       receiver: 'abbysmith',
       message: 'Hi!',
     },
+    {
+      sender: 'chrisjohnson',
+      receiver: 'abbysmith',
+      message: 'How can I help you',
+    },
   ],
 };
 
