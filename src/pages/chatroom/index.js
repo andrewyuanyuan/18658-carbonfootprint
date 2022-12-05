@@ -38,8 +38,21 @@ const useStyles = makeStyles({
   },
 });
 
+const date = new Date();
+    const showTime = date.getMinutes()  
+        + ':' + date.getHours()
+
+
 const currUser =  localStorage.getItem('currentuser')
-const username = JSON.parse(localStorage.getItem('users'))[currUser].name
+
+const username = ''
+
+try {
+     username = JSON.parse(localStorage.getItem('users'))[currUser].name
+  } catch (error) {
+    console.error(error);
+  }
+
 var chats = JSON.parse(localStorage.getItem('chats'))
 
 const Chat = (props) => {
@@ -109,7 +122,7 @@ const Chat = (props) => {
                                     primary = {chats["abbysmith,chrisjohnson"][index].message}>
                                 </ListItemText>
                                 <Grid item xs={12}>
-                                    <ListItemText align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} secondary="09:30"></ListItemText>
+                                    <ListItemText align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} > {showTime} </ListItemText>  {/**?secondary="09:30" */}
                                 </Grid>
                                 </>
                             );
@@ -132,7 +145,7 @@ const Chat = (props) => {
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <ListItemText align="left" secondary="09:31"></ListItemText>
+                  <ListItemText align="left" > {showTime} </ListItemText>    {/*secondary="09:31"*/}
                 </Grid>
               </Grid>
     </HeaderLayout>
