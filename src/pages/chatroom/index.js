@@ -17,6 +17,7 @@ import HeaderLayout from '../../common/header';
 import { current } from '@reduxjs/toolkit';
 import { Button } from '@mui/material';
 import { useRef, useState, useEffect } from 'react';
+import UserCircleIcon from '../../icons/user-circle';
 
 const useStyles = makeStyles({
   table: {
@@ -112,14 +113,46 @@ const Chat = (props) => {
                             <Grid item xs={12}>
                             {Object.keys(chats["abbysmith,chrisjohnson"]).map((index) => {
                                 return (
-                                <Grid item xs={12}>
-                                    <ListItemText 
-                                        align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
-                                        primary = {chats["abbysmith,chrisjohnson"][index].message}>
-                                    </ListItemText>
-                                    <ListItemText align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
-                                        primary = {chats["abbysmith,chrisjohnson"][index].time}>
-                                    </ListItemText>  
+                                <Grid container spacing={2}>
+                                    {chats["abbysmith,chrisjohnson"][index].receiver === currUser && 
+                                        <Grid item xs={1}>
+                                            <Avatar
+                                                sx={{
+                                                    cursor: 'pointer',
+                                                    height: 40,
+                                                    width: 40,
+                                                    ml: 1,
+                                                }}
+                                                src={'/static/images/avatars/' + chats["abbysmith,chrisjohnson"][index].sender + '.png'}
+                                                >
+                                                <UserCircleIcon fontSize="small" />
+                                            </Avatar>
+                                        </Grid>
+                                    }
+                                    <Grid item xs={11}>
+                                        <ListItemText 
+                                            align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
+                                            primary = {chats["abbysmith,chrisjohnson"][index].message}>
+                                        </ListItemText>
+                                        <ListItemText align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
+                                            primary = {chats["abbysmith,chrisjohnson"][index].time}>
+                                        </ListItemText>
+                                    </Grid>
+                                    {chats["abbysmith,chrisjohnson"][index].sender === currUser && 
+                                    <Grid item xs={1}>
+                                        <Avatar
+                                            sx={{
+                                                cursor: 'pointer',
+                                                height: 40,
+                                                width: 40,
+                                                ml: 1,
+                                            }}
+                                            src={'/static/images/avatars/' + chats["abbysmith,chrisjohnson"][index].sender + '.png'}
+                                            >
+                                            <UserCircleIcon fontSize="small" />
+                                        </Avatar>
+                                    </Grid>
+                                    }
                                 </Grid>
                             );
                             })} 
