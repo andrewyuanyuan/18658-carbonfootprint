@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import countryList from '../../../__mocks__/countryList';
@@ -35,7 +34,6 @@ function EditProjectDetail(props) {
   };
   const handleCountry = (e) => {
     setCountry(e.target.value);
-    console.log(country);
   };
   const handleLocation = (e) => {
     setLocation(e.target.value);
@@ -55,7 +53,10 @@ function EditProjectDetail(props) {
       owner: localStorage.getItem('currentuser'),
       contact: JSON.parse(localStorage.getItem('users'))[localStorage.getItem('currentuser')]['name'],
     };
+    // FIXME: Duplicate post might modify previous projects
+    // Documented under restriction
 
+    delete data[projectType][pid];
     data[projectType][getProjectId(name)] = jsonData;
     localStorage.setItem('projects', JSON.stringify(data));
     var tmp = new Set(Array.from(JSON.parse(localStorage.getItem('myProjects'))));
@@ -80,7 +81,7 @@ function EditProjectDetail(props) {
           <Grid item xs={12}>
             <Typography variant="h4">Project Title</Typography>
             <Typography>Use words people would search for when looking for your project</Typography>
-            <TextField required id="name" label="Project Name" fullWidth value={name} onChange={handleName} />
+            <TextField required id="name" label="Project Name" fullWidth value={name} onChange={handleName} sx={{mt: 2}} />
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h4">Project Specefics</Typography>
@@ -134,7 +135,7 @@ function EditProjectDetail(props) {
           <Grid item xs={12}>
             <Typography variant="h4">Project Image</Typography>
             <Typography>Improve your project visibility</Typography>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345, mt: 1}}>
               <CardMedia component="img" image={props.image} alt="No Image Found" />
             </Card>
           </Grid>
@@ -149,6 +150,7 @@ function EditProjectDetail(props) {
               multiline
               rows={3}
               onChange={handelDescription}
+              sx={{mt: 1}}
             />
           </Grid>
         </Grid>

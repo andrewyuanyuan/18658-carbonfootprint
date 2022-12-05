@@ -7,7 +7,6 @@ import EditProjectDetail from './component/EditProjectDetail';
 function PostProject() {
   const { category, id } = useParams();
   let props = {};
-  console.log(category);
 
   if (category === undefined) {
     props = {
@@ -21,9 +20,8 @@ function PostProject() {
     };
   } else {
     const currProject = JSON.parse(localStorage.getItem('projects'))[category][id];
-    console.log(currProject);
     props = {
-      name: id,
+      name: currProject.name,
       type: category,
       pricing: currProject.pricing,
       country: currProject.country,
