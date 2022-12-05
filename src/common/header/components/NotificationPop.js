@@ -22,7 +22,16 @@ export default function NotificationPop(props) {
 
   const action = (
     <React.Fragment>
-      <Button color="secondary" size="small" href="\Chat">
+      <Button
+        color="secondary"
+        size="small"
+        onClick={() => {
+          let cur = JSON.parse(localStorage.getItem('users'));
+          cur[localStorage.getItem('currentuser')]['notification'] = false;
+          localStorage.setItem('users', JSON.stringify(cur));
+          window.location.href = '/Chat';
+        }}
+      >
         Details
       </Button>
       <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
