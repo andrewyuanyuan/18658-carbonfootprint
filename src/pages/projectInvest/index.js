@@ -19,6 +19,11 @@ import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import { v4 as uuid } from 'uuid';
 
+
+function onlyNumbers(str) {
+  return /^[0-9]+$/.test(str);
+}
+
 function ProjectInvest() {
   let { category, id } = useParams();
   let projectDetail = JSON.parse(localStorage.getItem('projects'))[category][id];
@@ -95,17 +100,32 @@ function ProjectInvest() {
     let price = projectDetail.pricing;
     let result = price.slice(1);
     let target_amount = parseFloat(event.target.value);
-    setUinput(event.target.value);
-    result = parseFloat(result.slice(0, -6));
-    let final_price = target_amount * result;
-    if (isNaN(event.target.value - parseFloat(event.target.value))) {
-      final_price = 0;
-    }
-    if (isNaN(final_price)) {
-      final_price = 0;
-    }
-    setMessage(final_price.toFixed(2));
 
+    if(onlyNumbers(price)){
+      setUinput(event.target.value);
+      result = parseFloat(price);
+      let final_price = target_amount * result;
+      if (isNaN(event.target.value - parseFloat(event.target.value))) {
+        final_price = 0;
+      }
+      if (isNaN(final_price)) {
+        final_price = 0;
+      }
+      setMessage(final_price.toFixed(2));
+    }
+    else {
+
+      setUinput(event.target.value);
+      result = parseFloat(result.slice(0, -6));
+      let final_price = target_amount * result;
+      if (isNaN(event.target.value - parseFloat(event.target.value))) {
+        final_price = 0;
+      }
+      if (isNaN(final_price)) {
+        final_price = 0;
+      }
+      setMessage(final_price.toFixed(2));
+    }
     console.log(final_price.toFixed(2));
   };
   return (
