@@ -117,7 +117,7 @@ const HeaderNavbar = (props) => {
                       if (activeNotification) {
                         convert_flag();
                       }
-                      window.location.href = 'Chat';
+                      window.location.href = '/Chat';
                     }}
                   />
                 </Badge>
