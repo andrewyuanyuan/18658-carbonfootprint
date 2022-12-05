@@ -38,24 +38,13 @@ const useStyles = makeStyles({
   },
 });
 
-const date = new Date();
-    const showTime = date.getMinutes()  
-        + ':' + date.getHours()
-
-
-const currUser =  localStorage.getItem('currentuser')
-
-const username = ''
-
-try {
-     username = JSON.parse(localStorage.getItem('users'))[currUser].name
-  } catch (error) {
-    console.error(error);
-  }
-
-var chats = JSON.parse(localStorage.getItem('chats'))
 
 const Chat = (props) => {
+    const currUser = localStorage.getItem('currentuser')
+    const username = JSON.parse(localStorage.getItem('users'))[currUser].name
+    
+    var chats = JSON.parse(localStorage.getItem('chats'))
+    
     var receiver = "abbysmith"
     if (currUser === "abbysmith") {
         receiver = "chrisjohnson";
@@ -70,12 +59,19 @@ const Chat = (props) => {
       };
 
     const onSubmit = () => {
+        const date = new Date();
+        const currTime = date.getHours() + ':' + date.getMinutes()
         chats["abbysmith,chrisjohnson"].push({
             sender: currUser,
             receiver: receiver,
             message: text.message,
+            time: currTime,
         })
         localStorage.setItem('chats', JSON.stringify(chats));
+        
+        let cur = JSON.parse(localStorage.getItem('users'));
+        cur[receiver]['notification'] = true;
+        localStorage.setItem('users', JSON.stringify(cur))
         window.location.reload();
     }
 
@@ -83,7 +79,7 @@ const Chat = (props) => {
 
   return (
       <HeaderLayout>
-        <Grid container>
+        <Grid container sx={{mt:5}} >
             <Grid item xs={12} >
                 <Typography variant="h4" className="header-message" sx={{p: 5, m: 5}}>Chat Room</Typography>
             </Grid>
@@ -116,15 +112,15 @@ const Chat = (props) => {
                             <Grid item xs={12}>
                             {Object.keys(chats["abbysmith,chrisjohnson"]).map((index) => {
                                 return (
-                                <>
-                                <ListItemText 
-                                    align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
-                                    primary = {chats["abbysmith,chrisjohnson"][index].message}>
-                                </ListItemText>
                                 <Grid item xs={12}>
-                                    <ListItemText align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} > {showTime} </ListItemText>  {/**?secondary="09:30" */}
+                                    <ListItemText 
+                                        align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
+                                        primary = {chats["abbysmith,chrisjohnson"][index].message}>
+                                    </ListItemText>
+                                    <ListItemText align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
+                                        primary = {chats["abbysmith,chrisjohnson"][index].time}>
+                                    </ListItemText>  
                                 </Grid>
-                                </>
                             );
                             })} 
                             </Grid>
@@ -143,9 +139,6 @@ const Chat = (props) => {
                        </Button>
                        </Grid>
                     </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <ListItemText align="left" > {showTime} </ListItemText>    {/*secondary="09:31"*/}
                 </Grid>
               </Grid>
     </HeaderLayout>
