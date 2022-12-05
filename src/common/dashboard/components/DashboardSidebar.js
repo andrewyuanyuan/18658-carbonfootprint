@@ -116,16 +116,16 @@ const DashboardSidebar = (props) => {
                   {username}
                 </Typography>
                 <Typography color="neutral.400" variant="body2">
-                  Your role : {role}
+                  Your role: {role}
                 </Typography>
               </div>
-              <SelectorIcon
+              {/* <SelectorIcon
                 sx={{
                   color: 'neutral.500',
                   width: 14,
                   height: 14,
                 }}
-              />
+              /> */}
             </Box>
           </Box>
         </div>

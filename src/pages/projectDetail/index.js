@@ -63,7 +63,7 @@ function ProjectDetail() {
                   startIcon={<MessageIcon fontSize="medium" />}
                   sx={{ mt: 6, mb: 3 }}
                   variant="contained"
-                  href="/"
+                  href="/Chat"
                 >
                   Message the owner
                 </Button>

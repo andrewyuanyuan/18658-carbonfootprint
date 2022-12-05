@@ -52,8 +52,8 @@ const RecentProgress = (props) => {
   }, []);
 
   const handleProgress = (progress) => {
-    return progress > 100 ? 100 : progress
-  }
+    return progress > 100 ? 100 : progress;
+  };
 
   return (
     <Card {...props}>
@@ -83,9 +83,9 @@ const RecentProgress = (props) => {
                 value={handleProgress(Math.floor((product.donationReceived / product.donationGoal) * 100))}
               />
               <Typography color="textPrimary">
-                {`${handleProgress(Math.floor((product.donationReceived / product.donationGoal) * 100))}% Completed ( $${
-                  product.donationReceived
-                } / $${product.donationGoal} )`}
+                {`${handleProgress(
+                  Math.floor((product.donationReceived / product.donationGoal) * 100),
+                )}% Completed ( $${product.donationReceived} / $${product.donationGoal} )`}
               </Typography>
             </Grid>
           </Grid>
