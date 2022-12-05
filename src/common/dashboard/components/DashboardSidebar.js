@@ -43,11 +43,6 @@ const items =
           icon: <EmissionquotaIcon fontSize="small" />,
           title: 'Emission Quota',
         },
-        {
-          href: '/test',
-          icon: <CogIcon fontSize="small" />,
-          title: 'Test Page',
-        },
       ]
     : [
         {
