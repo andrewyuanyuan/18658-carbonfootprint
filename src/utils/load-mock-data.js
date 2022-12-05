@@ -11,6 +11,7 @@ export default function LoadMockData() {
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('chats', JSON.stringify(chats));
     localStorage.setItem('myProjects', JSON.stringify(users.abbysmith.projects));
+    localStorage.setItem('disableNotification', JSON.stringify(false));
   }
   if (localStorage.getItem('myProjects') === null || localStorage.getItem('myProjects') === undefined) {
     localStorage.setItem('myProjects', JSON.stringify(users.abbysmith.projects));

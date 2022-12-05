@@ -38,109 +38,109 @@ const useStyles = makeStyles({
   },
 });
 
-
 const Chat = (props) => {
-    const currUser = localStorage.getItem('currentuser')
-    const username = JSON.parse(localStorage.getItem('users'))[currUser].name
-    
-    var chats = JSON.parse(localStorage.getItem('chats'))
-    
-    var receiver = "abbysmith"
-    if (currUser === "abbysmith") {
-        receiver = "chrisjohnson";
-    }
-    const receiverUsername = JSON.parse(localStorage.getItem('users'))[receiver].name
-    const [text, setText] = useState(" ")
-    const handleChange = (event) => {
-        setText({
-          ...text,
-          message: event.target.value,
-        });
-      };
+  const currUser = localStorage.getItem('currentuser');
+  const username = JSON.parse(localStorage.getItem('users'))[currUser].name;
 
-    const onSubmit = () => {
-        const date = new Date();
-        const currTime = date.getHours() + ':' + date.getMinutes()
-        chats["abbysmith,chrisjohnson"].push({
-            sender: currUser,
-            receiver: receiver,
-            message: text.message,
-            time: currTime,
-        })
-        localStorage.setItem('chats', JSON.stringify(chats));
-        
-        let cur = JSON.parse(localStorage.getItem('users'));
-        cur[receiver]['notification'] = true;
-        localStorage.setItem('users', JSON.stringify(cur))
-        window.location.reload();
-    }
+  var chats = JSON.parse(localStorage.getItem('chats'));
+
+  var receiver = 'abbysmith';
+  if (currUser === 'abbysmith') {
+    receiver = 'chrisjohnson';
+  }
+  const receiverUsername = JSON.parse(localStorage.getItem('users'))[receiver].name;
+  const [text, setText] = useState(' ');
+  const handleChange = (event) => {
+    setText({
+      ...text,
+      message: event.target.value,
+    });
+  };
+
+  const onSubmit = () => {
+    const date = new Date();
+    const currTime = date.getHours() + ':' + date.getMinutes();
+    chats['abbysmith,chrisjohnson'].push({
+      sender: currUser,
+      receiver: receiver,
+      message: text.message,
+      time: currTime,
+    });
+    localStorage.setItem('disableNotification', JSON.stringify(false));
+    localStorage.setItem('chats', JSON.stringify(chats));
+    let cur = JSON.parse(localStorage.getItem('users'));
+    cur[receiver]['notification'] = true;
+    localStorage.setItem('users', JSON.stringify(cur));
+    window.location.reload();
+  };
 
   const classes = useStyles();
 
   return (
-      <HeaderLayout>
-        <Grid container sx={{mt:5}} >
-            <Grid item xs={12} >
-                <Typography variant="h4" className="header-message" sx={{p: 5, m: 5}}>Chat Room</Typography>
-            </Grid>
+    <HeaderLayout>
+      <Grid container sx={{ mt: 5 }}>
+        <Grid item xs={12}>
+          <Typography variant="h4" className="header-message" sx={{ p: 5, m: 5 }}>
+            Chat Room
+          </Typography>
         </Grid>
-        <Grid container component={Paper} className={classes.chatSection}>
-            <Grid item xs={3} className={classes.borderRight500}>
-                <List>
-                    <ListItem button key={currUser}>
-                        <ListItemIcon>
-                        <Avatar alt={currUser} src={"/static/images/avatars/"+currUser+".png"} />
-                        </ListItemIcon>
-                        <ListItemText primary={username}></ListItemText>
-                    </ListItem>
-                </List>
-                <Divider />
-                <Divider />
-                <List>
-                <ListItem button key={receiver}>
-                        <ListItemIcon>
-                        <Avatar alt={receiver} src={"/static/images/avatars/"+receiver+".png"} />
-                        </ListItemIcon>
-                        <ListItemText primary={receiverUsername}></ListItemText>
-                    </ListItem>
-                </List>
-            </Grid>
-            <Grid item xs={9}>
-                <List className={classes.messageArea}>
-                    <ListItem key="1">
-                        <Grid container>
-                            <Grid item xs={12}>
-                            {Object.keys(chats["abbysmith,chrisjohnson"]).map((index) => {
-                                return (
-                                <Grid item xs={12}>
-                                    <ListItemText 
-                                        align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
-                                        primary = {chats["abbysmith,chrisjohnson"][index].message}>
-                                    </ListItemText>
-                                    <ListItemText align={chats["abbysmith,chrisjohnson"][index].sender === currUser? "right":"left"} 
-                                        primary = {chats["abbysmith,chrisjohnson"][index].time}>
-                                    </ListItemText>  
-                                </Grid>
-                            );
-                            })} 
-                            </Grid>
-                        </Grid>
-                    </ListItem>
-                </List>
-                <Divider />
-                <Grid container style={{padding: '20px'}}>
-                    <Grid item xs={11}>
-                        <TextField id="outlined-basic-email" onChange={handleChange} label="Type Something" fullWidth />
-                    </Grid>
-                    
-                    <Grid xs={1} align="right">
-                        <Button onClick={onSubmit}>
-                       Send
-                       </Button>
-                       </Grid>
-                    </Grid>
+      </Grid>
+      <Grid container component={Paper} className={classes.chatSection}>
+        <Grid item xs={3} className={classes.borderRight500}>
+          <List>
+            <ListItem button key={currUser}>
+              <ListItemIcon>
+                <Avatar alt={currUser} src={'/static/images/avatars/' + currUser + '.png'} />
+              </ListItemIcon>
+              <ListItemText primary={username}></ListItemText>
+            </ListItem>
+          </List>
+          <Divider />
+          <Divider />
+          <List>
+            <ListItem button key={receiver}>
+              <ListItemIcon>
+                <Avatar alt={receiver} src={'/static/images/avatars/' + receiver + '.png'} />
+              </ListItemIcon>
+              <ListItemText primary={receiverUsername}></ListItemText>
+            </ListItem>
+          </List>
+        </Grid>
+        <Grid item xs={9}>
+          <List className={classes.messageArea}>
+            <ListItem key="1">
+              <Grid container>
+                <Grid item xs={12}>
+                  {Object.keys(chats['abbysmith,chrisjohnson']).map((index) => {
+                    return (
+                      <Grid item xs={12}>
+                        <ListItemText
+                          align={chats['abbysmith,chrisjohnson'][index].sender === currUser ? 'right' : 'left'}
+                          primary={chats['abbysmith,chrisjohnson'][index].message}
+                        ></ListItemText>
+                        <ListItemText
+                          align={chats['abbysmith,chrisjohnson'][index].sender === currUser ? 'right' : 'left'}
+                          primary={chats['abbysmith,chrisjohnson'][index].time}
+                        ></ListItemText>
+                      </Grid>
+                    );
+                  })}
                 </Grid>
               </Grid>
+            </ListItem>
+          </List>
+          <Divider />
+          <Grid container style={{ padding: '20px' }}>
+            <Grid item xs={11}>
+              <TextField id="outlined-basic-email" onChange={handleChange} label="Type Something" fullWidth />
+            </Grid>
+
+            <Grid xs={1} align="right">
+              <Button onClick={onSubmit}>Send</Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     </HeaderLayout>
   );
 };

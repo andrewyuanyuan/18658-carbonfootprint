@@ -7,6 +7,7 @@ import UserCircleIcon from '../../../icons/user-circle';
 import AccountPopover from '../../dashboard/components/AccountPopover';
 import Logo from '../../Logo';
 
+
 const HeaderNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   boxShadow: theme.shadows[3],
@@ -22,17 +23,15 @@ function convert_flag() {
 const HeaderNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
   const settingsRef = useRef(null);
-  var read = false;
+  // var read = false;
   let curUser = localStorage.getItem('currentuser');
 
-  if (curUser === 'chrisjohnson') {
-    read = JSON.parse(localStorage.getItem('users'))['chrisjohnson']['notification'];
-  } else {
-    read = JSON.parse(localStorage.getItem('users'))['abbysmith']['notification'];
-  }
-  const [openAccountPopover, setOpenAccountPopover] = useState(read);
+  // read = JSON.parse(localStorage.getItem('users'))[curUser]['notification'];
+  const [openAccountPopover, setOpenAccountPopover] = useState(false);
 
-  const [activeNotification, switchNotification] = useState(false);
+  const [activeNotification, switchNotification] = useState(
+    JSON.parse(localStorage.getItem('users'))[curUser]['notification'],
+  );
 
   return (
     <>
