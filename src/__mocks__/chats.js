@@ -6,12 +6,6 @@ const chats = {
       message: 'Hi!',
       time: "08:10",
     },
-    {
-      sender: 'chrisjohnson',
-      receiver: 'abbysmith',
-      message: 'How can I help you',
-      time: "08:11",
-    },
   ],
 };
 
