@@ -35,7 +35,7 @@ function ProjectInvest() {
     // if (!isInteger(message))
     let test = parseFloat(message);
     console.log(uinput - parseFloat(uinput));
-    if (isNaN(uinput - parseFloat(uinput))) {
+    if (isNaN(uinput - parseFloat(uinput)) || parseFloat(uinput) <= 0) {
       alert('Please enter a valid number');
     } else {
       setOpen(true);
