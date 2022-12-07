@@ -15,7 +15,7 @@ function PostProject() {
       pricing: '',
       country: 'Afghanistan',
       city: '',
-      image: '/static/images/projects/ocean/WhaleDefender.png',
+      image: '/static/images/projects/renewable.png',
       description: '',
     };
   } else {
