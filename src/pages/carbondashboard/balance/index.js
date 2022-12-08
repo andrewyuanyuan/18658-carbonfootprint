@@ -4,7 +4,7 @@ import DashboardLayout from '../../../common/dashboard';
 const Balance = () => {
   return (
     <DashboardLayout>
-      <h1>Account Balance</h1>
+      <h1>{'Account Balance is under development (iteration 2)'}</h1>
     </DashboardLayout>
   );
 };

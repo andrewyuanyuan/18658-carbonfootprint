@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import HeaderNavbar from './components/HeaderNavbar';
+import NotificationPop from './components/NotificationPop';
 
 const HeaderLayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -28,6 +29,13 @@ const HeaderLayout = (props) => {
           {children}
         </Box>
       </HeaderLayoutRoot>
+      {JSON.parse(localStorage.getItem('users'))[localStorage.getItem('currentuser')]['notification'] &&
+      !JSON.parse(localStorage.getItem('disableNotification')) ? (
+        <NotificationPop />
+      ) : (
+        <></>
+      )}
+
       <HeaderNavbar onSidebarOpen={() => setSidebarOpen(true)} />
     </>
   );

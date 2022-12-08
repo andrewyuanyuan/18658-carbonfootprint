@@ -7,12 +7,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function ProjectCard(props) {
+  console.log(props);
   let link = '/projects/' + props.category + '/' + props.id;
-  let indexFirstSentence = props.description.indexOf('.') + 1
-  let description = props.description.substring(0, indexFirstSentence);
-  if (indexFirstSentence === -1) {
-    description = props.description.substring(0, Math.min(props.description.substring.length, 50))
-  }
+  let description = props.description.substring(
+    0,
+    props.description.includes('.') ? props.description.indexOf('.') : props.description.length,
+  );
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia component="img" height="140" image={props.image} />
@@ -25,9 +25,8 @@ export default function ProjectCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="medium">Share</Button>
         <Button size="medium" href={link}>
-          Learn More
+          Details
         </Button>
       </CardActions>
     </Card>

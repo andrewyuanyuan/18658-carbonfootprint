@@ -7,6 +7,7 @@ import AccountDashboard from './pages/accountDashboard';
 import Projects from './pages/projects';
 import ProjectDetail from './pages/projectDetail';
 import ProjectInvest from './pages/projectInvest';
+import Chat from './pages/chatroom';
 
 import Balance from './pages/carbondashboard/balance';
 import Customization from './pages/carbondashboard/customization';
@@ -18,9 +19,13 @@ import FundrasingRecent from './pages/fundraisingdashboard/recent';
 import FundrasingProgres from './pages/fundraisingdashboard/progress';
 import FundrasingCustomization from './pages/fundraisingdashboard/customization';
 import FundrasingBackActivity from './pages/fundraisingdashboard/bankactivity';
+import MyProject from './pages/myProjects';
 
 import Test from './pages/test';
 import store from './store';
+
+import PostProject from './pages/postProject';
+
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -32,6 +37,7 @@ function Album() {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<ProjectGallary />} />
+            <Route exact path="/Chat" element={<Chat />} />
 
             <Route exact path="/dashboard" element={<Recent />} />
             <Route exact path="/customization" element={<Customization />} />
@@ -46,9 +52,13 @@ function Album() {
 
             <Route exact path="/login" element={<SignIn />} />
             <Route exact path="/test" element={<Test />} />
+            <Route exact path="/myProjects" element={<MyProject />} />
             <Route exact path="/projects/:category" element={<Projects />} />
             <Route exact path="/projects/:category/:id" element={<ProjectDetail />} />
             <Route exact path="/projects/investment/:category/:id" element={<ProjectInvest />} />
+
+            <Route exact path="/postProject/:category/:id" element={<PostProject />} />
+            <Route exact path="/postProject" element={<PostProject />} />
           </Routes>
         </BrowserRouter>
       </React.Fragment>

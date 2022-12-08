@@ -17,6 +17,12 @@ import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
+import { v4 as uuid } from 'uuid';
+
+
+function onlyNumbers(str) {
+  return /^[0-9]+$/.test(str);
+}
 
 function ProjectInvest() {
   let { category, id } = useParams();
@@ -24,8 +30,16 @@ function ProjectInvest() {
   const [open, setOpen] = React.useState(false);
   const [snackOpen, setSnackOpen] = React.useState(false);
   const [message, setMessage] = React.useState('');
-  const handleClickOpen = () => {
-    setOpen(true);
+  const [uinput, setUinput] = React.useState('');
+  const handleClickOpen = (message) => {
+    // if (!isInteger(message))
+    let test = parseFloat(message);
+    console.log(uinput - parseFloat(uinput));
+    if (isNaN(uinput - parseFloat(uinput)) || parseFloat(uinput) <= 0) {
+      alert('Please enter a valid number');
+    } else {
+      setOpen(true);
+    }
   };
 
   const handleClose = () => {
@@ -40,22 +54,78 @@ function ProjectInvest() {
     let set_to = parseFloat(all_project[category][id].donationReceived) + parseFloat(message);
     all_project[category][id].donationReceived = set_to;
     localStorage.setItem('projects', JSON.stringify(all_project));
-    console.log(JSON.parse(localStorage.getItem('projects'))[category][id].donationReceived);
+    let users = JSON.parse(localStorage.getItem('users'));
+    let transactions = users['chrisjohnson'].transactions;
+    let name_check = category + '/' + id;
+    let exisit_check = false;
+    let set_amount = parseFloat(message);
+    let current = new Date();
+    var char_result = 'CDD';
+    var characters = '1234567890';
+    var charactersLength = characters.length;
+    let uid = uuid();
+    for (var i = 0; i < 3; i++) {
+      char_result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    users['chrisjohnson'].transactions.push({
+      name: name_check,
+      amount: message,
+      date: current.toLocaleDateString(),
+      time: current.toLocaleTimeString(),
+      id: uid,
+      ref: char_result,
+      projectName: projectDetail.name,
+      type: 'delivered',
+    });
+    for (let i = 0; i < users['abbysmith'].projects.length; i++) {
+      if (users['abbysmith'].projects[i].localeCompare(name_check) === 0) {
+        users['abbysmith'].transactions.push({
+          name: name_check,
+          amount: message,
+          date: current.toLocaleDateString(),
+          time: current.toLocaleTimeString(),
+          id: uid,
+          ref: char_result,
+          projectName: projectDetail.name,
+          type: 'deposit',
+        });
+      }
+    }
+    localStorage.setItem('users', JSON.stringify(users));
     setSnackOpen(true);
-    // setOpen(false);
   };
 
   const amountConversion = (event) => {
     let price = projectDetail.pricing;
     let result = price.slice(1);
     let target_amount = parseFloat(event.target.value);
-    result = parseFloat(result.slice(0, -6));
-    let final_price = target_amount * result;
-    if (isNaN(final_price)) {
-      final_price = 0;
-    }
-    setMessage(final_price.toFixed(2));
 
+    if(onlyNumbers(price)){
+      setUinput(event.target.value);
+      result = parseFloat(price);
+      let final_price = target_amount * result;
+      if (isNaN(event.target.value - parseFloat(event.target.value))) {
+        final_price = 0;
+      }
+      if (isNaN(final_price)) {
+        final_price = 0;
+      }
+      setMessage(final_price.toFixed(2));
+    }
+    else {
+
+      setUinput(event.target.value);
+      result = parseFloat(result.slice(0, -6));
+      let final_price = target_amount * result;
+      if (isNaN(event.target.value - parseFloat(event.target.value))) {
+        final_price = 0;
+      }
+      if (isNaN(final_price)) {
+        final_price = 0;
+      }
+      setMessage(final_price.toFixed(2));
+    }
     console.log(final_price.toFixed(2));
   };
   return (
@@ -95,7 +165,7 @@ function ProjectInvest() {
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
               <Button
-                onClick={handleClickOpen}
+                onClick={() => handleClickOpen(message)}
                 component="a"
                 startIcon={<CurrencyExchangeIcon fontSize="medium" />}
                 sx={{ mt: 6, mb: 3 }}

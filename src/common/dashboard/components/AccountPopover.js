@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Box, MenuItem, MenuList, Popover, Typography } from '@mui/material';
 import axios from 'axios';
+import ColorToggleButton from '../../header/components/roleSwitch';
 
 function logout() {
   return axios.put('/users/logout', {}).then(function (response) {
@@ -11,6 +12,11 @@ function logout() {
     window.location.href = '/login';
   });
 }
+
+const roleMap = {
+  owner: 'Project Owner',
+  investor: 'Enterprise Investor',
+};
 
 const AccountPopover = (props) => {
   const { anchorEl, onClose, open, ...other } = props;
@@ -40,10 +46,13 @@ const AccountPopover = (props) => {
         }}
       >
         <Typography variant="overline">Account</Typography>
-        <Typography color="text.secondary" variant="body2">
-          {localStorage.getItem('username')}
+        <Typography>
+          {roleMap[localStorage.getItem('currentrole')] + ': ' + localStorage.getItem('currentuser')}
         </Typography>
+        <Typography>Switch Account</Typography>
+        <ColorToggleButton></ColorToggleButton>
       </Box>
+
       <MenuList
         disablePadding
         sx={{
@@ -57,7 +66,7 @@ const AccountPopover = (props) => {
           },
         }}
       >
-        <MenuItem onClick={handleClickLogout}>Sign out</MenuItem>
+        {/* <MenuItem onClick={handleClickLogout}>Sign out</MenuItem> */}
       </MenuList>
     </Popover>
   );
