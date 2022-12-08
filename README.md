@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# Cynance
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome come to our repository for Cynance!
 
-## Available Scripts
+**Style Guide: [link](https://www.figma.com/file/4eV5dsoPLYhabC7i7g5v1r/SRID-Style-Guide-(Cynance)?node-id=0%3A1&t=UQVzMSTM3kMez0ym-0)**
 
-In the project directory, you can run:
+## Technology Stack
 
-### `npm start`
+We use [**React**](https://reactjs.org/) as our frontend framework and [**MUI**](https://mui.com/) as our component library.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Due to time limit, we mainly focused on frontend implementation for iteration 1 so there isn't a real backend yet.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Nonetheless, our frontend implementation fully comply with the style guide we defined and has a well-structured codebase. The file tree below will explain how we organize our project in details:
 
-### `npm test`
+```
+.gitignore
+.prettierrc 				-> Code formatter file, applies Airbnb standard
+package-lock.json			
+package.json
+public						-> Holds all the static resources such as avatars and projects images
+   |-- static
+   |   |-- images
+   |   |   |-- avatars
+   |   |   |-- projects
+src							-> Source code root
+   |-- __mocks__				-> Holds all the API mooc datas
+   |-- icons
+   |-- common					-> Holds all the components that will be used in high frequency 
+   |   |-- Logo.js				-> Reusable Logo component
+   |   |-- dashboard			-> navbar and side bar for investor
+   |   |   |-- components			-> Holds all the components of parent component (applies to all)
+   |   |   |-- index.js				-> Each parent has one unified exit (applied to all)
+   |   |-- header				-> navbar and side bar for investor
+   |-- pages				-> Each page has its own folder
+   |   |-- accountDashboard
+   |   |-- carbondashboard
+   |   |   |-- balance
+   |   |   |-- customization
+   |   |   |-- emissionQuota
+   |   |   |-- recent
+   |   |   |-- transaction
+   |   |-- chatroom
+   |   |-- fundraisingdashboard
+   |   |   |-- bankactivity
+   |   |   |-- customization
+   |   |   |-- progress
+   |   |   |-- recent
+   |   |-- myProjects
+   |   |-- postProject
+   |   |-- projectDetail
+   |   |-- projectGallary
+   |   |-- projectInvest
+   |   |-- projects
+   |   |-- test
+   |-- App.js				-> Root component of our application
+   |-- index.js				-> Traditional and actual entry point for all node apps
+   |-- theme				-> Holds theme file where we implement our style guide
+   |-- utils				-> Holds all the utils functions
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+As stated before, for milestone 1, we do not have an actual backend with database, instead we use **localstorage** as our database temporarily.
 
-### `npm run build`
+## Operation Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone our repository to local
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    git clone https://github.com/Zizhen/18658-carbonfootprint.git
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. In the project directory, run the following command to install all the dependencies
 
-### `npm run eject`
+    ```bash
+    npm install
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Runs the app in the development mode
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    npm start
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Open [http://localhost:3000](http://localhost:3000/) (might differ if port `3000` is occupied) to view it in your browser
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Limitations
 
-## Learn More
+1. We did not create an actual backend linked to database due to time limit
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Components below are static without functionalities, which are not part of our MVP and will be implemented in future iterations.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    ```
+    carbondashboard - balance
+    carbondashboard - customization
+    carbondashboard - emissionQuota
+    carbondashboard - transaction
+    fundraisingdashboard - customization
+    fundraisingdashboard - bankactivity
+    ```

@@ -4,6 +4,7 @@ const chats = {
       sender: 'chrisjohnson',
       receiver: 'abbysmith',
       message: 'Hi!',
+      time: "08:10",
     },
   ],
 };

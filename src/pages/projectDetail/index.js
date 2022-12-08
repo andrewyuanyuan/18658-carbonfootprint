@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom';
 
 function ProjectDetail() {
   let { category, id } = useParams();
-  console.log(id);
   let projectDetail = JSON.parse(localStorage.getItem('projects'))[category][id];
   const isInvestor = localStorage.getItem('currentrole') === 'investor';
   const isMyProject = localStorage.getItem('currentuser') === projectDetail.owner;
@@ -64,9 +63,9 @@ function ProjectDetail() {
                   startIcon={<MessageIcon fontSize="medium" />}
                   sx={{ mt: 6, mb: 3 }}
                   variant="contained"
-                  href="/"
+                  href="/Chat"
                 >
-                  Message the provider
+                  Message the owner
                 </Button>
               </Grid>
             </Grid>

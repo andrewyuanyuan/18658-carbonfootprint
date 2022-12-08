@@ -43,11 +43,6 @@ const items =
           icon: <EmissionquotaIcon fontSize="small" />,
           title: 'Emission Quota',
         },
-        {
-          href: '/test',
-          icon: <CogIcon fontSize="small" />,
-          title: 'Test Page',
-        },
       ]
     : [
         {
@@ -80,59 +75,53 @@ const loginItem = {
 
 const DashboardSidebar = (props) => {
   const { open, onClose } = props;
-  const [loginStatus, setloginStatus] = useState(false);
-
-  useEffect(() => {
-    const username = localStorage.getItem('username');
-    if (username) {
-      setloginStatus(true);
-    }
-  }, []);
-
+  const [username, setUsername] = useState('');
+  const [role, setRole] = useState('');
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'), {
     defaultMatches: true,
     noSsr: false,
   });
+
+  useEffect(() => {
+    const users = JSON.parse(localStorage.getItem('users'));
+    const currentUser = localStorage.getItem('currentuser');
+    setUsername(users[currentUser].name);
+    setRole(users[currentUser].role === 'owner' ? 'Project Provider' : 'Project Investor');
+  }, []);
 
   const content = (
     <>
       <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
         <div>
           <Box sx={{ px: 2 }}>
-            {loginStatus ? (
-              <Box
+            <Box
+              sx={{
+                alignItems: 'center',
+                backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                cursor: 'pointer',
+                display: 'flex',
+                justifyContent: 'space-between',
+                px: 3,
+                py: '11px',
+                borderRadius: 1,
+              }}
+            >
+              <div>
+                <Typography color="inherit" variant="subtitle1">
+                  {username}
+                </Typography>
+                <Typography color="neutral.400" variant="body2">
+                  Your role: {role}
+                </Typography>
+              </div>
+              {/* <SelectorIcon
                 sx={{
-                  alignItems: 'center',
-                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  px: 3,
-                  py: '11px',
-                  borderRadius: 1,
+                  color: 'neutral.500',
+                  width: 14,
+                  height: 14,
                 }}
-              >
-                <div>
-                  <Typography color="inherit" variant="subtitle1">
-                    {localStorage.getItem('username')}
-                  </Typography>
-                  <Typography color="neutral.400" variant="body2">
-                    Your role : {localStorage.getItem('currentrole')}
-                  </Typography>
-                </div>
-                <SelectorIcon
-                  sx={{
-                    color: 'neutral.500',
-                    width: 14,
-                    height: 14,
-                  }}
-                />
-              </Box>
-            ) : (
-              <Button href={loginItem.href} startIcon={loginItem.icon} fullWidth color="primary" variant="contained">
-                {loginItem.title}
-              </Button>
-            )}
+              /> */}
+            </Box>
           </Box>
         </div>
         <Divider

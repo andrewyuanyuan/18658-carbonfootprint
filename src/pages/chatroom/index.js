@@ -13,6 +13,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
+import HeaderLayout from '../../common/header';
+import { current } from '@reduxjs/toolkit';
+import { Button } from '@mui/material';
+import { useRef, useState, useEffect } from 'react';
+import UserCircleIcon from '../../icons/user-circle';
 
 const useStyles = makeStyles({
   table: {
@@ -20,113 +25,153 @@ const useStyles = makeStyles({
   },
   chatSection: {
     width: '100%',
-    height: '80vh'
+    height: '80vh',
   },
   headBG: {
-      backgroundColor: '#e0e0e0'
+    backgroundColor: '#e0e0e0',
   },
   borderRight500: {
-      borderRight: '1px solid #e0e0e0'
+    borderRight: '1px solid #e0e0e0',
   },
   messageArea: {
     height: '70vh',
-    overflowY: 'auto'
-  }
+    overflowY: 'auto',
+  },
 });
 
-const Chat = () => {
+const Chat = (props) => {
+  const currUser = localStorage.getItem('currentuser');
+  const username = JSON.parse(localStorage.getItem('users'))[currUser].name;
+
+  var chats = JSON.parse(localStorage.getItem('chats'));
+
+  var receiver = 'abbysmith';
+  if (currUser === 'abbysmith') {
+    receiver = 'chrisjohnson';
+  }
+  const receiverUsername = JSON.parse(localStorage.getItem('users'))[receiver].name;
+  const [text, setText] = useState(' ');
+  const handleChange = (event) => {
+    setText({
+      ...text,
+      message: event.target.value,
+    });
+  };
+
+  const onSubmit = () => {
+    const date = new Date();
+    const currTime = date.getHours() + ':' + date.getMinutes();
+    chats['abbysmith,chrisjohnson'].push({
+      sender: currUser,
+      receiver: receiver,
+      message: text.message,
+      time: currTime,
+    });
+    localStorage.setItem('disableNotification', JSON.stringify(false));
+    localStorage.setItem('chats', JSON.stringify(chats));
+    let cur = JSON.parse(localStorage.getItem('users'));
+    cur[receiver]['notification'] = true;
+    localStorage.setItem('users', JSON.stringify(cur));
+    window.location.reload();
+  };
+
   const classes = useStyles();
 
   return (
-      <div>
-        <Grid container>
-            <Grid item xs={12} >
-                <Typography variant="h5" className="header-message">Chat</Typography>
-            </Grid>
+    <HeaderLayout>
+      <Typography variant="h4" sx={{ pb: 2, pl: 3 }}>
+        Chat Room
+      </Typography>
+      <Grid container component={Paper} className={classes.chatSection}>
+        <Grid item xs={3} className={classes.borderRight500}>
+          <List>
+            <ListItem button key={currUser}>
+              <ListItemIcon>
+                <Avatar alt={currUser} src={'/static/images/avatars/' + currUser + '.png'} />
+              </ListItemIcon>
+              <ListItemText primary={username}></ListItemText>
+            </ListItem>
+          </List>
+          <Divider />
+          <Divider />
+          <List>
+            <ListItem button key={receiver}>
+              <ListItemIcon>
+                <Avatar alt={receiver} src={'/static/images/avatars/' + receiver + '.png'} />
+              </ListItemIcon>
+              <ListItemText primary={receiverUsername}></ListItemText>
+            </ListItem>
+          </List>
         </Grid>
-        <Grid container component={Paper} className={classes.chatSection}>
-            <Grid item xs={3} className={classes.borderRight500}>
-                <List>
-                    <ListItem button key="RemySharp">
-                        <ListItemIcon>
-                        <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
-                        </ListItemIcon>
-                        <ListItemText primary="John Wick"></ListItemText>
-                    </ListItem>
-                </List>
-                <Divider />
-                <Grid item xs={12} style={{padding: '10px'}}>
-                    <TextField id="outlined-basic-email" label="Search" variant="outlined" fullWidth />
+        <Grid item xs={9}>
+          <List className={classes.messageArea}>
+            <ListItem key="1">
+              <Grid container>
+                <Grid item xs={12}>
+                  {Object.keys(chats['abbysmith,chrisjohnson']).map((index) => {
+                    return (
+                      <Grid container spacing={2}>
+                        {chats['abbysmith,chrisjohnson'][index].receiver === currUser && (
+                          <Grid item xs={1}>
+                            <Avatar
+                              sx={{
+                                cursor: 'pointer',
+                                height: 40,
+                                width: 40,
+                                ml: 1,
+                              }}
+                              src={'/static/images/avatars/' + chats['abbysmith,chrisjohnson'][index].sender + '.png'}
+                            >
+                              <UserCircleIcon fontSize="small" />
+                            </Avatar>
+                          </Grid>
+                        )}
+                        <Grid item xs={11}>
+                          <ListItemText
+                            align={chats['abbysmith,chrisjohnson'][index].sender === currUser ? 'right' : 'left'}
+                            primary={chats['abbysmith,chrisjohnson'][index].time}
+                          ></ListItemText>
+                          <ListItemText
+                            align={chats['abbysmith,chrisjohnson'][index].sender === currUser ? 'right' : 'left'}
+                            primary={chats['abbysmith,chrisjohnson'][index].message}
+                          ></ListItemText>
+                        </Grid>
+                        {chats['abbysmith,chrisjohnson'][index].sender === currUser && (
+                          <Grid item xs={1}>
+                            <Avatar
+                              sx={{
+                                cursor: 'pointer',
+                                height: 40,
+                                width: 40,
+                                ml: 1,
+                              }}
+                              src={'/static/images/avatars/' + chats['abbysmith,chrisjohnson'][index].sender + '.png'}
+                            >
+                              <UserCircleIcon fontSize="small" />
+                            </Avatar>
+                          </Grid>
+                        )}
+                      </Grid>
+                    );
+                  })}
                 </Grid>
-                <Divider />
-                <List>
-                    <ListItem button key="RemySharp">
-                        <ListItemIcon>
-                            <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
-                        </ListItemIcon>
-                        <ListItemText primary="Remy Sharp">Remy Sharp</ListItemText>
-                        <ListItemText secondary="online" align="right"></ListItemText>
-                    </ListItem>
-                    <ListItem button key="Alice">
-                        <ListItemIcon>
-                            <Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
-                        </ListItemIcon>
-                        <ListItemText primary="Alice">Alice</ListItemText>
-                    </ListItem>
-                    <ListItem button key="CindyBaker">
-                        <ListItemIcon>
-                            <Avatar alt="Cindy Baker" src="https://material-ui.com/static/images/avatar/2.jpg" />
-                        </ListItemIcon>
-                        <ListItemText primary="Cindy Baker">Cindy Baker</ListItemText>
-                    </ListItem>
-                </List>
+              </Grid>
+            </ListItem>
+          </List>
+          <Divider />
+          <Grid container style={{ padding: '20px' }}>
+            <Grid item xs={11}>
+              <TextField id="outlined-basic-email" onChange={handleChange} label="Type Something" fullWidth />
             </Grid>
-            <Grid item xs={9}>
-                <List className={classes.messageArea}>
-                    <ListItem key="1">
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" primary="Hey man, What's up ?"></ListItemText>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" secondary="09:30"></ListItemText>
-                            </Grid>
-                        </Grid>
-                    </ListItem>
-                    <ListItem key="2">
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <ListItemText align="left" primary="Hey, Iam Good! What about you ?"></ListItemText>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ListItemText align="left" secondary="09:31"></ListItemText>
-                            </Grid>
-                        </Grid>
-                    </ListItem>
-                    <ListItem key="3">
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" primary="Cool. i am good, let's catch up!"></ListItemText>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <ListItemText align="right" secondary="10:30"></ListItemText>
-                            </Grid>
-                        </Grid>
-                    </ListItem>
-                </List>
-                <Divider />
-                <Grid container style={{padding: '20px'}}>
-                    <Grid item xs={11}>
-                        <TextField id="outlined-basic-email" label="Type Something" fullWidth />
-                    </Grid>
-                    <Grid xs={1} align="right">
-                        <Fab color="primary" aria-label="add"><SendIcon /></Fab>
-                    </Grid>
-                </Grid>
+
+            <Grid xs={1} align="right">
+              <Button onClick={onSubmit}>Send</Button>
             </Grid>
+          </Grid>
         </Grid>
-      </div>
+      </Grid>
+    </HeaderLayout>
   );
-}
+};
 
 export default Chat;

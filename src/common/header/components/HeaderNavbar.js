@@ -7,23 +7,31 @@ import UserCircleIcon from '../../../icons/user-circle';
 import AccountPopover from '../../dashboard/components/AccountPopover';
 import Logo from '../../Logo';
 
+
 const HeaderNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   boxShadow: theme.shadows[3],
 }));
 
+function convert_flag() {
+  let curUser = localStorage.getItem('currentuser');
+  let cur = JSON.parse(localStorage.getItem('users'));
+  cur[curUser]['notification'] = !cur[curUser]['notification'];
+  localStorage.setItem('users', JSON.stringify(cur));
+}
+
 const HeaderNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
   const settingsRef = useRef(null);
-  const [openAccountPopover, setOpenAccountPopover] = useState(false);
-  const [loginStatus, setloginStatus] = useState(false);
+  // var read = false;
+  let curUser = localStorage.getItem('currentuser');
 
-  useEffect(() => {
-    const username = localStorage.getItem('username') || localStorage.getItem('currentuser');
-    if (username) {
-      setloginStatus(true);
-    }
-  }, []);
+  // read = JSON.parse(localStorage.getItem('users'))[curUser]['notification'];
+  const [openAccountPopover, setOpenAccountPopover] = useState(false);
+
+  const [activeNotification, switchNotification] = useState(
+    JSON.parse(localStorage.getItem('users'))[curUser]['notification'],
+  );
 
   return (
     <>
@@ -82,34 +90,53 @@ const HeaderNavbar = (props) => {
             <></>
           )}
 
+          <Box sx={{ m: 1 }}>
+            <Button
+              color="primary"
+              variant="text"
+              onClick={() => {
+                let cur = JSON.parse(localStorage.getItem('users'));
+                cur[localStorage.getItem('currentuser')]['notification'] = false;
+                localStorage.setItem('users', JSON.stringify(cur));
+                window.location.href = '/Chat';
+              }}
+            >
+              Chatroom
+            </Button>
+          </Box>
+
           <Box sx={{ flexGrow: 1 }} />
 
-          {loginStatus ? (
-            <>
-              <Tooltip title="Notifications">
-                <IconButton sx={{ ml: 1 }}>
-                  <Badge badgeContent={4} color="primary" variant="dot">
-                    <BellIcon fontSize="small" />
-                  </Badge>
-                </IconButton>
-              </Tooltip>
-              <Avatar
-                onClick={() => setOpenAccountPopover(true)}
-                ref={settingsRef}
-                sx={{
-                  cursor: 'pointer',
-                  height: 40,
-                  width: 40,
-                  ml: 1,
-                }}
-                src="/static/images/avatars/avatar_13.png"
-              >
-                <UserCircleIcon fontSize="small" />
-              </Avatar>
-            </>
-          ) : (
-            <></>
-          )}
+          <>
+            <Tooltip title="Notifications">
+              <IconButton sx={{ ml: 1 }}>
+                <Badge badgeContent={activeNotification ? 1 : 0} color="primary" variant="dot">
+                  <BellIcon
+                    fontSize="small"
+                    onClick={() => {
+                      if (activeNotification) {
+                        convert_flag();
+                      }
+                      window.location.href = '/Chat';
+                    }}
+                  />
+                </Badge>
+              </IconButton>
+            </Tooltip>
+            <Avatar
+              onClick={() => setOpenAccountPopover(true)}
+              ref={settingsRef}
+              sx={{
+                cursor: 'pointer',
+                height: 40,
+                width: 40,
+                ml: 1,
+              }}
+              src={'/static/images/avatars/' + localStorage.getItem('currentuser') + '.png'}
+            >
+              <UserCircleIcon fontSize="small" />
+            </Avatar>
+          </>
         </Toolbar>
       </HeaderNavbarRoot>
 

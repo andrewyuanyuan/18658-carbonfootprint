@@ -49,7 +49,7 @@ const AccountPopover = (props) => {
         <Typography>
           {roleMap[localStorage.getItem('currentrole')] + ': ' + localStorage.getItem('currentuser')}
         </Typography>
-        <Typography>Switch Your Role:</Typography>
+        <Typography>Switch Account</Typography>
         <ColorToggleButton></ColorToggleButton>
       </Box>
 
@@ -66,7 +66,7 @@ const AccountPopover = (props) => {
           },
         }}
       >
-        <MenuItem onClick={handleClickLogout}>Sign out</MenuItem>
+        {/* <MenuItem onClick={handleClickLogout}>Sign out</MenuItem> */}
       </MenuList>
     </Popover>
   );

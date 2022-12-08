@@ -8,7 +8,11 @@ import Typography from '@mui/material/Typography';
 
 export default function ProjectCard(props) {
   let link = '/projects/' + props.category + '/' + props.id;
-  let description = props.description.substring(0, props.description.indexOf('.'));
+  let indexFirstSentence = props.description.indexOf('.') + 1
+  let description = props.description.substring(0, indexFirstSentence);
+  if (indexFirstSentence === -1) {
+    description = props.description.substring(0, Math.min(props.description.substring.length, 50))
+  }
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia component="img" height="140" image={props.image} />

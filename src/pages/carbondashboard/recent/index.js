@@ -22,6 +22,12 @@ function Recent() {
       >
         <Container maxWidth={false}>
           <Grid container spacing={3}>
+            <Grid item lg={8} md={12} xl={9} xs={12}>
+              <LatestTransactions />
+            </Grid>
+            <Grid item lg={4} md={6} xl={3} xs={12}>
+              <LatestProjects sx={{ height: '100%' }} />
+            </Grid>
             <Grid item lg={3} sm={6} xl={3} xs={12}>
               <Budget />
             </Grid>
@@ -39,12 +45,6 @@ function Recent() {
             </Grid>
             <Grid item lg={4} md={6} xl={3} xs={12}>
               <InvestmentByCategory sx={{ height: '100%' }} />
-            </Grid>
-            <Grid item lg={4} md={6} xl={3} xs={12}>
-              <LatestProjects sx={{ height: '100%' }} />
-            </Grid>
-            <Grid item lg={8} md={12} xl={9} xs={12}>
-              <LatestTransactions />
             </Grid>
           </Grid>
         </Container>
